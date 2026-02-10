@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Letter - Jorge Luis Herrera</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@300;600&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d1117;
+            --secondary: #161b22;
+            --accent: #fbbf24;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --border: #30363d;
+        }
+
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            :root {
+                --primary: #ffffff;
+                --text-main: #000000;
+                --text-muted: #555555;
+                --border: #dddddd;
+                --accent: #b8860b;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary);
+            color: var(--text-main);
+            line-height: 1.8;
+            padding: 60px 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--secondary);
+            padding: 60px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        @media print {
+            .container {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+        }
+
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .header-main h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .header-main p {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+
+        .info {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: right;
+        }
+
+        .date {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+
+        .recipient {
+            margin-bottom: 40px;
+        }
+
+        .recipient p {
+            font-weight: 600;
+            color: white;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .signature {
+            margin-top: 50px;
+        }
+
+        .signature p {
+            font-family: 'Outfit', sans-serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .btn-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+        }
+
+        .editable:hover {
+            outline: 1px dashed var(--accent);
+            cursor: text;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn-print no-print" onclick="window.print()">Print PDF</button>
+
+    <div class="container">
+        <header>
+            <div class="header-main">
+                <h1>Jorge Luis Herrera</h1>
+                <p>Computer Science Student</p>
+            </div>
+            <div class="info">
+                <p>herreraceciliajorgeluis@gmail.com</p>
+                <p>Remote / Cuba</p>
+            </div>
+        </header>
+
+        <div class="date" id="currentDate"></div>
+
+        <div class="recipient">
+            <p>Dear Hiring Manager,</p>
+        </div>
+
+        <div class="content">
+            <p>To Whom It May Concern,</p>
+
+            <p>I am writing to you with the firm purpose of presenting my candidacy to join your technical team. As a
+                computer science student, my professional approach is defined by a fundamental duality: a
+                <strong>writer's
+                    narrative elegance</strong> to conceive innovative solutions and a <strong>compiler's implacable
+                    rigor</strong> to ensure their technical excellence.
+            </p>
+
+            <p>Throughout my career, I have developed a deep passion for systems architecture and artificial
+                intelligence solutions that do not just solve problems, but tell a story of efficiency and scalability.
+                My experience ranges from developing high-precision academic scraping tools to implementing robust
+                financial microservices, always maintaining an absolute commitment to code cleanliness and performance
+                optimization.</p>
+
+            <p>I consider software engineering to be a scientific art. My ability to transmute complex ideas into
+                tangible architectures, combined with my proficiency in languages such as Rust, C#, Go, and TypeScript,
+                allows me to approach technical challenges from a comprehensive perspective. I am convinced that my
+                profile aligns with the search for professionals who not only master the technique but also bring a
+                strategic and disciplined vision to product development.</p>
+
+            <p>Thank you in advance for the time dedicated to reviewing my profile. I am at your entire disposal to
+                arrange an interview and delve deeper into how my architectural vision can contribute to the success of
+                your upcoming projects.</p>
+
+            <p>Sincerely,</p>
+        </div>
+
+        <div class="signature">
+            <p>Jorge Luis Herrera</p>
+            <small
+                style="color: var(--text-muted); font-family: 'Fira Code', monospace; font-size: 0.7rem; text-transform: uppercase;">Scientific
+                Author & Systems Architect</small>
+        </div>
+    </div>
+
+    <script>
+        function setFormattedDate() {
+            const dateElement = document.getElementById('currentDate');
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            dateElement.innerText = now.toLocaleDateString('en-US', options).toUpperCase();
+        }
+        setFormattedDate();
+    </script>
+</body>
+
+</html>

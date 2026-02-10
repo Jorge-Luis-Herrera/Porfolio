@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Letter - Jorge Luis Herrera</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@300;600&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d1117;
+            --secondary: #161b22;
+            --accent: #fbbf24;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --border: #30363d;
+        }
+
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            :root {
+                --primary: #ffffff;
+                --text-main: #000000;
+                --text-muted: #555555;
+                --border: #dddddd;
+                --accent: #b8860b;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary);
+            color: var(--text-main);
+            line-height: 1.8;
+            padding: 60px 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--secondary);
+            padding: 60px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        @media print {
+            .container {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+        }
+
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .header-main h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .header-main p {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+
+        .info {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: right;
+        }
+
+        .date {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+
+        .recipient {
+            margin-bottom: 40px;
+        }
+
+        .recipient p {
+            font-weight: 600;
+            color: white;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .signature {
+            margin-top: 50px;
+        }
+
+        .signature p {
+            font-family: 'Outfit', sans-serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .btn-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+        }
+
+        .editable:hover {
+            outline: 1px dashed var(--accent);
+            cursor: text;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn-print no-print" onclick="window.print()">Imprimir PDF / Print PDF</button>
+
+    <div class="container">
+        <div class="date" id="currentDate"></div>
+
+        <div class="recipient">
+            <p>A quien pueda interesarle...</p>
+        </div>
+
+        <div class="content">
+            <p>Estimado Sr/Sra,</p>
+
+            <p> Dentro de un basto mercado ,falto de personas con la vividez necesaria para marcar una
+                diferencia pr'actica empresarial dentro de un mundo donde ,a simple vista ,parece imposible ganar
+                una pelea entre potencias ya bien remarcadas . No pierdo la esperanza de ser una de esas personas
+                que logre lo imposible ,como Junior m'as al fin ,no pierdo el sue;o de poder cambiar lo inevitable.
+
+            </p>
+
+            <p>Podría hablar de tecnicismos; es lo que se suele hacer, e incluso puede que sea lo correcto. Sin embargo,
+                pasar desapercibido por el algoritmo que alguien diseñó para detectar "talento" es el destino más
+                probable. Por eso, si estás leyendo esto, es porque, al igual que yo, buscas algo diferente a lo
+                habitual. Si ese es el caso, te envío un saludo cordial; es un gusto conocerte.</p>
+
+            <p>¿Hablar un poco de mí? Por supuesto. Podría pasar horas frente a mi laptop escribiendo código Markdown o
+                HTML/CSS para que todo luzca impecable y presentable, pero sería aburrido. Prefiero contarte una pequeña
+                historia; quizás logres identificarte con ella.</p>
+
+            <p>En la cruda realidad de una sociedad fracturada, nace un chico sencillo con muy poco a su favor. El
+                salario apenas alcanzaba para llegar a fin de mes y la velocidad de internet era casi inexistente. Ese
+                chico se armó una PC con las pocas piezas que pudo reunir: una pantalla "inventada", un CPU lento y
+                apenas 2GB de RAM. Windows nunca fue una opción; Ubuntu fue, desde pequeño, su salvación para poder
+                "correr rápido las cosas".</p>
+
+            <p>Ese chico se interesó por las Ciencias de la Computación. Comprendió que el futuro estaba en lo que quiso
+                hacer toda su vida: programar. Pero no solo programar por oficio, sino hacer Ciencia. Quería cumplir los
+                sueños que alguna vez planteó dentro de los muchos libros que su joven mente devoró en sus breves ratos
+                libres.</p>
+
+            <p>Vivió bajo el rigor de apagones de casi 20 horas sin poder "tirar una línea de código". Obligado a
+                fortalecer las bases de sus conocimientos, no tuvo más remedio que aprender de los libros, de los
+                mejores y "a la antigua". En esas escasas 4 horas de electricidad, luchaba dentro del enjambre de
+                bestias que llamamos mercado para poder subsistir. Así pasaron los años —tres, para ser exactos—. Ya
+                casi termina su primera meta: graduarse, aun a sabiendas de que un título poco garantiza en este
+                mercado. Pero lo hace con la seguridad de que si lo logró en los peores momentos, lograrlo ahora es más
+                que posible. Lograr ese sueño imposible dando ese primer paso de enfrentarse a una
+                competencia que antes parecía despiadada,ahora,solo un juego de niños.</p>
+
+            <p>Dicho esto, gracias por tu atención. Si yo puedo estar aquí hoy presentándome ante Uds,no te
+                limites a leer: persigue tus metas con la misma tenacidad que ese chico que vino de la nada.</p>
+
+            <p>Me presento nuevamente: mi nombre es Jorge Luis y aspiro a convertirme en uno de los revolucionarios
+                digitales más grandes de esta era. Si has llegado hasta aquí, es porque buscas algo más que un simple
+                "relleno" para tus filas.</p>
+
+            <p>Espero tu respuesta...</p>
+            <p><strong>herreraceciliajorgeluis@gmail.com</strong></p>
+        </div>
+    </div>
+
+    <script>
+        function setFormattedDate() {
+            const dateElement = document.getElementById('currentDate');
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            dateElement.innerText = now.toLocaleDateString('es-ES', options).toUpperCase();
+        }
+        setFormattedDate();
+    </script>
+</body>
+
+</html>

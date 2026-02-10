@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Jorge Luis Herrera - Computer Science Student</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@300;600&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d1117;
+            --secondary: #161b22;
+            --accent: #58a6ff;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --border: #30363d;
+        }
+
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            :root {
+                --primary: #ffffff;
+                --text-main: #000000;
+                --text-muted: #555555;
+                --border: #dddddd;
+                --accent: #0056b3;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .header-main h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+
+        .header-main p {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+
+        .contact-info {
+            text-align: right;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: white;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: var(--border);
+        }
+
+        .summary p {
+            margin-bottom: 15px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill-category h3 {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .skill-list {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .skill-list li {
+            margin-bottom: 4px;
+            border-left: 2px solid var(--border);
+            padding-left: 10px;
+        }
+
+        .project-item {
+            margin-bottom: 20px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .project-title {
+            font-weight: 700;
+            color: white;
+        }
+
+        .project-tech {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .award-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .award-rank {
+            font-weight: 700;
+            color: #ffd700;
+        }
+
+        .btn-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn-print no-print" onclick="window.print()">Print to PDF</button>
+
+    <div class="container">
+        <header>
+            <div class="header-main">
+                <h1>Jorge Luis Herrera</h1>
+                <p>Computer Science Student</p>
+            </div>
+            <div class="contact-info">
+                <p>herreraceciliajorgeluis@gmail.com</p>
+                <p>Cuba / Remote</p>
+            </div>
+        </header>
+
+        <section class="summary">
+            <h2>Professional Profile</h2>
+            <p>
+                Computer science student passionate about optimized code, efficient software design, and scalable
+                architectures. With a strong theoretical foundation in algorithms, mathematics, and practical
+                experience in a wide range of technologies, from low-level systems to modern web applications.
+            </p>
+        </section>
+
+        <section class="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <ul class="skill-list">
+                        <li>C, C++, C#, Go, Rust</li>
+                        <li>Python, TypeScript, Dart</li>
+                        <li>SQL (Postgres, MySQL, SQL Server)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend & Cloud</h3>
+                    <ul class="skill-list">
+                        <li>.NET, Node.js (NestJS, Express)</li>
+                        <li>AWS, Google Cloud, Docker</li>
+                        <li>Supabase, Firebase, GitHub Actions</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Frontend & Mobile</h3>
+                    <ul class="skill-list">
+                        <li>React, Next.js, Flutter</li>
+                        <li>Tailwind CSS, React Native</li>
+                        <li>Framer Motion, Redux</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>AI & Data Science</h3>
+                    <ul class="skill-list">
+                        <li>PyTorch, TensorFlow, Keras</li>
+                        <li>NumPy, Matplotlib, Web Scraping</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects">
+            <h2>Featured Projects (GitHub)</h2>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <span class="project-title">Cuban-Tesis-Scrapper</span>
+                    <span class="project-tech">Python, Automation</span>
+                </div>
+                <p class="project-desc">Specialized scraping tool for extracting academic data from Cuban university
+                    repositories.</p>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <span class="project-title">CecilOs</span>
+                    <span class="project-tech">C, Systems Programming</span>
+                </div>
+                <p class="project-desc">System-level project exploring basic operating systems concepts and memory
+                    management.</p>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <span class="project-title">The Ledger (Accounting)</span>
+                    <span class="project-tech">TypeScript, Supabase</span>
+                </div>
+                <p class="project-desc">Microservices architecture for financial management with guaranteed consistency.
+                </p>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <span class="project-title">YT-Video-Downloader</span>
+                    <span class="project-tech">C#, .NET</span>
+                </div>
+                <p class="project-desc">Desktop application for managing and downloading multimedia content.</p>
+            </div>
+        </section>
+
+
+        <section class="education">
+            <h2>Education</h2>
+            <div class="project-item">
+                <div class="project-header">
+                    <span class="project-title">Computer Science</span>
+                    <span class="project-tech">Deep Theory focus</span>
+                </div>
+                <p class="project-desc">Focus on Data Structures, Algorithms, Mathematics, and Systems
+                    Architecture.</p>
+            </div>
+        </section>
+
+        <section class="academic-core">
+            <h2>Detailed Academic Core</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <ul class="skill-list">
+                        <li>Linear Algebra</li>
+                        <li>Mathematical Analysis</li>
+                        <li>Computational Logic</li>
+                        <li>Computer Architecture</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <ul class="skill-list">
+                        <li>Ordinary Differential Equations</li>
+                        <li>Data Structures and Algorithms</li>
+                        <li>Databases (Relational & Non-Relational)</li>
+                        <li>Probabilities</li>
+                        <li>Discrete Mathematics</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mindset-soft">
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h2>Main Set & Mindset</h2>
+                    <ul class="skill-list">
+                        <li><strong>Scientific Rigor:</strong> Application of the scientific method to software
+                            engineering.</li>
+                        <li><strong>Architectural Thinking:</strong> Scalability and maintainability oriented design.
+                        </li>
+                        <li><strong>Efficiency Philosophy:</strong> Resource and algorithm optimization as a priority.
+                        </li>
+                        <li><strong>Continuous Learning:</strong> Adaptability to emerging technologies and paradigms.
+                        </li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h2>Soft Skills</h2>
+                    <ul class="skill-list">
+                        <li><strong>Analytical Problem Solving:</strong> Decomposition of complex systems.</li>
+                        <li><strong>Technical Communication:</strong> Clear transmission of abstract concepts.</li>
+                        <li><strong>Proactivity & Autonomy:</strong> Leadership and self-management in development.</li>
+                        <li><strong>Critical Thinking:</strong> Constant evaluation of tools and processes.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
