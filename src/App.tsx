@@ -6,7 +6,7 @@ import { BlueprintDoc } from './components/sections/BlueprintDoc'
 import { SideNav } from './components/ui/SideNav'
 import { PersonalInfo } from './components/sections/PersonalInfo'
 import { ThemeToggle } from './components/ui/ThemeToggle'
-import { Mail, MessageCircle, Send, Globe } from 'lucide-react'
+import { Mail, MessageCircle, Send, Globe, Github, Linkedin } from 'lucide-react'
 import { useLanguage } from './context/LanguageContext'
 
 function App() {
@@ -61,6 +61,12 @@ function App() {
             </div>
 
             <div className="flex flex-wrap justify-center gap-8 items-center">
+              <a href="https://github.com/Jorge-Luis-Herrera" target="_blank" className="text-white-soft/40 hover:text-accent transition-all transform hover:scale-110">
+                <Github className="w-6 h-6" />
+              </a>
+              <a href="https://linkedin.com/in/jorge-luis-herrera-cecilia-6a9031377/" target="_blank" className="text-white-soft/40 hover:text-accent transition-all transform hover:scale-110">
+                <Linkedin className="w-6 h-6" />
+              </a>
               <a href="https://t.me/Jorge_Lhc" target="_blank" className="text-white-soft/40 hover:text-accent transition-all transform hover:scale-110">
                 <Send className="w-6 h-6" />
               </a>
