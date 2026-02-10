@@ -1,2 +1,1 @@
-# Leadership
-Leadership is about empowering others to achieve a common goal...
+**Philosophy**: Empowering technical talent through strategy and mentorship. Focus on high-level architecture and decision-making.

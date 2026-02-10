@@ -1,2 +1,1 @@
-# Understanding
-Deep understanding of the problem domain is critical...
+**Core**: Deep domain immersion. Understanding the "Why" before the "How" to ensure long-term system scalability.

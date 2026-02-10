@@ -13,7 +13,8 @@ export const PersonalInfo = () => {
     useEffect(() => {
         if (selectedSkill) {
             setIsLoading(true);
-            fetch(`/content/skills/${selectedSkill.file}.md`)
+            const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+            fetch(`${baseUrl}content/skills/${selectedSkill.file}.md`)
                 .then(res => res.text())
                 .then(text => {
                     setMarkdownContent(text);
@@ -113,7 +114,7 @@ export const PersonalInfo = () => {
                         <h3 className="font-serif text-xl italic text-white-soft">{language === 'es' ? 'Archivos Profesionales' : 'Professional Archives'}</h3>
 
                         <div className="space-y-4">
-                            <a href={language === 'es' ? "/cv.html" : "/cv-en.html"} target="_blank" className="flex items-center justify-between p-4 bg-white-soft/5 hover:bg-accent/10 border border-white-soft/5 hover:border-accent/30 rounded-lg transition-all group">
+                            <a href={`${import.meta.env.BASE_URL}${language === 'es' ? "cv.html" : "cv-en.html"}`} target="_blank" className="flex items-center justify-between p-4 bg-white-soft/5 hover:bg-accent/10 border border-white-soft/5 hover:border-accent/30 rounded-lg transition-all group">
                                 <div className="flex items-center gap-3 text-white-soft/80 group-hover:text-accent">
                                     <FileText className="w-5 h-5" />
                                     <span className="font-mono text-xs uppercase tracking-widest">
@@ -121,7 +122,7 @@ export const PersonalInfo = () => {
                                     </span>
                                 </div>
                             </a>
-                            <a href={language === 'es' ? "/cover-letter.html" : "/cover-letter-en.html"} target="_blank" className="flex items-center justify-between p-4 bg-white-soft/5 hover:bg-accent/10 border border-white-soft/5 hover:border-accent/30 rounded-lg transition-all group">
+                            <a href={`${import.meta.env.BASE_URL}${language === 'es' ? "cover-letter.html" : "cover-letter-en.html"}`} target="_blank" className="flex items-center justify-between p-4 bg-white-soft/5 hover:bg-accent/10 border border-white-soft/5 hover:border-accent/30 rounded-lg transition-all group">
                                 <div className="flex items-center gap-3 text-white-soft/80 group-hover:text-accent">
                                     <Mail className="w-5 h-5" />
                                     <span className="font-mono text-xs uppercase tracking-widest">

@@ -1,2 +1,1 @@
-# Creativity
-Creativity is the heart of problem solving...
+**Approach**: Divergent thinking applied to convergent engineering problems. Finding elegant solutions in complex constraints.

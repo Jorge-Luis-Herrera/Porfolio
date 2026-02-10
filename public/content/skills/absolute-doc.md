@@ -1,2 +1,1 @@
-# Absolute Doc
-Documentation as the single source of truth...
+**Standard**: Documentation as the single source of truth. Zero ambiguity through rigorous technical writing.
