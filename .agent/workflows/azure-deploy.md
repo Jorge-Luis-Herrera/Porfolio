@@ -38,6 +38,12 @@ Cada vez que hagas un `git push` a la rama `main`, GitHub Actions:
 2. Correrá `npm run build`.
 3. Subirá la carpeta `dist` directamente a Azure.
 
+### Solución de Errores Comunes
+
+#### Error: `RequestDisallowedByAzure`
+Si ves este error al crear el recurso, significa que tu suscripción tiene restringida la región seleccionada (ej. East US 2).
+- **Solución**: Intenta cambiar la región a **East US**, **West US 2** o **West Europe**. Azure suele limitar las suscripciones gratuitas o de estudiante a regiones específicas para optimizar recursos.
+
 // turbo
 ### Comandos Útiles para verificar localmente
 ```bash
