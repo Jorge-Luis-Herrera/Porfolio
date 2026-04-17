@@ -18,20 +18,20 @@ function App() {
 
       <SideNav />
 
-      <nav className="fixed top-0 w-full p-4 md:p-6 flex justify-between items-center z-40 bg-background/80 backdrop-blur-md border-b border-white-soft/5">
-        <span className="font-serif text-lg md:text-xl italic tracking-wider text-white-soft lg:ml-24 transition-all">The Writer's Code</span>
-        <div className="flex gap-4 md:gap-8 items-center font-mono text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-white-soft/60">
+      <nav className="fixed top-3 lg:top-6 left-1/2 -translate-x-1/2 w-[94%] lg:w-[calc(100%-120px)] lg:max-w-7xl lg:ml-10 px-4 lg:px-12 py-3 flex justify-between items-center z-40 bg-background/80 backdrop-blur-md border border-white/50 shadow-[0_4px_30px_rgba(0,0,0,0.1),inset_0_0_1px_1px_rgba(255,255,255,0.2)] rounded-full transition-all">
+        <span className="font-serif text-base lg:text-xl italic tracking-wider text-white-soft transition-all">The Writer's Code</span>
+        <div className="flex gap-4 lg:gap-12 items-center font-mono text-[9px] lg:text-[11px] uppercase tracking-[0.2em] text-white-soft/60">
           <a href="#proyectos" className="hover:text-accent transition-colors hidden md:block">{t('nav.projects')}</a>
           <a href="#contacto" className="hover:text-accent transition-colors hidden md:block">{t('nav.contact')}</a>
 
-          <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-center mr-2 md:mr-0">
+          <div className="flex flex-row gap-3 lg:gap-6 items-center">
             <ThemeToggle />
             <button
               onClick={toggleLanguage}
-              className="flex items-center justify-center gap-2 w-16 md:w-auto h-7 md:h-auto px-2 md:px-3 border border-white-soft/10 hover:border-accent/50 rounded-full transition-all text-accent group whitespace-nowrap text-[8px] md:text-[10px]"
+              className="flex items-center justify-center gap-2 w-8 h-8 lg:w-auto lg:h-auto lg:px-4 lg:py-1.5 border border-white-soft/10 hover:border-accent/50 rounded-full transition-all text-accent group whitespace-nowrap text-[8px] lg:text-[10px]"
             >
-              <Globe className="w-2.5 h-2.5 md:w-3 md:h-3 group-hover:rotate-180 transition-transform duration-500 shrink-0" />
-              <span>Vol. {language === 'es' ? 'ES' : 'EN'}</span>
+              <Globe className="w-3 h-3 lg:w-4 lg:h-4 group-hover:rotate-180 transition-transform duration-500 shrink-0" />
+              <span className="hidden lg:inline">Vol. {language === 'es' ? 'ES' : 'EN'}</span>
             </button>
           </div>
         </div>

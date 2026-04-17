@@ -8,7 +8,7 @@ export const ThemeToggle = () => {
     return (
         <button
             onClick={toggleTheme}
-            className="group relative flex items-center gap-2 px-4 py-2 border border-white-soft/10 hover:border-accent/50 rounded-full transition-all text-white-soft/60 hover:text-accent font-mono text-[10px] uppercase tracking-widest overflow-hidden"
+            className="group relative flex items-center gap-2 p-2 lg:px-4 lg:py-2 border border-white-soft/10 hover:border-accent/50 rounded-full transition-all text-white-soft/60 hover:text-accent font-mono text-[10px] uppercase tracking-widest overflow-hidden"
         >
             {/* Paintbrush Stroke Animation */}
             <AnimatePresence mode="wait">
@@ -32,7 +32,7 @@ export const ThemeToggle = () => {
                 <Palette className="w-4 h-4" />
             </motion.div>
 
-            <span className="relative z-10">
+            <span className="relative z-10 hidden lg:inline">
                 {theme === 'dark' ? 'Dark Academia' : 'Light Academia'}
             </span>
 

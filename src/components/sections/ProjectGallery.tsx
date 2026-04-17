@@ -13,6 +13,7 @@ export interface ProjectData {
     tech: string[];
     link: string;
     liveLink?: string;
+    thumbnail?: string;
     essay: {
         problem: string;
         solution: string;
@@ -24,216 +25,240 @@ const getProjects = (lang: string): ProjectData[] => [
     // --- FULLSTACK ---
     {
         category: 'fullstack',
-        chapter: lang === 'es' ? "Capítulo I" : "Chapter I",
-        title: "Enchanted Vanity (Cubit)",
+        chapter: lang === 'es' ? 'Capítulo I' : 'Chapter I',
+        title: 'B&V Cosméticos',
         description: lang === 'es'
-            ? "Plataforma e-commerce premium para la gestión de productos de belleza, desarrollada para Cubit."
-            : "Premium e-commerce platform for beauty product management, developed for Cubit.",
-        tech: ["React", "FastAPI", "SQLite", "Tailwind"],
-        link: "https://github.com/Jorge-Luis-Herrera/Enchanted-Vanity",
-        liveLink: "https://enchanted-vanity-dggjdvgch9hqfne7.eastus-01.azurewebsites.net/",
+            ? 'Catálogo premium de belleza con panel de administración, inventario, subida de imágenes y pedidos por WhatsApp.'
+            : 'Premium beauty catalog with an admin panel, inventory management, image uploads, and WhatsApp ordering.',
+        tech: ['React', 'NestJS', 'SQLite', 'Azure'],
+        link: 'https://github.com/Jorge-Luis-Herrera/Enchanted-Vanity',
+        liveLink: 'https://enchanted-vanity-dggjdvgch9hqfne7.eastus-01.azurewebsites.net/',
         essay: {
             problem: lang === 'es'
-                ? "Necesidad de una interfaz administrativa fluida para la gestión de inventario y ventas con una estética premium."
-                : "Need for a fluid administrative interface for inventory and sales management with a premium aesthetic.",
+                ? 'Necesidad de un catálogo de belleza con administración clara y persistencia estable.'
+                : 'Need for a beauty catalog with clear administration and stable persistence.',
             solution: lang === 'es'
-                ? "Arquitectura desacoplada con un backend robusto en FastAPI y un frontend reactivo enfocado en UX."
-                : "Decoupled architecture with a robust FastAPI backend and a reactive UX-focused frontend.",
+                ? 'Frontend reactivo con backend NestJS, CRUD de inventario y despliegue en Azure.'
+                : 'Reactive frontend with a NestJS backend, inventory CRUD, and Azure deployment.',
             outcome: lang === 'es'
-                ? "Sistema operativo optimizado para el flujo de ventas con despliegue automatizado."
-                : "Optimized operating system for sales flow with automated deployment."
+                ? 'Experiencia de compra y gestión más fluida con datos persistentes e imágenes alojadas.'
+                : 'Smoother shopping and management experience with persistent data and hosted images.'
         }
     },
     {
         category: 'fullstack',
-        chapter: lang === 'es' ? "Capítulo II" : "Chapter II",
-        title: "Enterprise .NET Systems",
+        chapter: lang === 'es' ? 'Capítulo II' : 'Chapter II',
+        title: 'Cute Sell Plush Store',
         description: lang === 'es'
-            ? "Sistemas escalables desarrollados sobre el ecosistema robusto de .NET."
-            : "Scalable systems developed on top of the robust .NET ecosystem.",
-        tech: [".NET", "ASP.NET Core", "Entity Framework"],
-        link: "https://github.com/Jorge-Luis-Herrera/Dotnet",
+            ? 'Tienda online de peluches con catálogo inmersivo, búsqueda global, panel admin y ventas por WhatsApp.'
+            : 'Online plush store with an immersive catalog, global search, admin dashboard, and WhatsApp sales.',
+        tech: ['Next.js', 'NestJS', 'TypeScript', 'Tailwind CSS'],
+        link: 'https://github.com/Jorge-Luis-Herrera/Cutesell',
+        liveLink: 'https://cutesell-abe0e5d5cwdwf7a6.eastus-01.azurewebsites.net/',
+        thumbnail: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80',
         essay: {
             problem: lang === 'es'
-                ? "Necesidad de infraestructuras empresariales con tipado fuerte y alto rendimiento."
-                : "Need for enterprise infrastructures with strong typing and high performance.",
+                ? 'La tienda necesitaba una experiencia moderna de catálogo y administración unificada.'
+                : 'The store needed a modern catalog experience and a unified admin workflow.',
             solution: lang === 'es'
-                ? "Implementación de servicios RESTful y capas de acceso a datos optimizadas."
-                : "Implementation of RESTful services and optimized data access layers.",
+                ? 'Interfaz con animaciones suaves, catálogo visual y gestión de inventario orientada a conversión.'
+                : 'Animated interface with a visual catalog and inventory management focused on conversion.',
             outcome: lang === 'es'
-                ? "Sistemas estables y mantenibles siguiendo principios SOLID."
-                : "Stable and maintainable systems following SOLID principles."
+                ? 'Proceso de compra más claro y una operación administrativa más ágil.'
+                : 'Clearer shopping flow and a more agile admin operation.'
         }
     },
     {
         category: 'fullstack',
-        chapter: lang === 'es' ? "Capítulo III" : "Chapter III",
-        title: "MediaStream Downloader",
+        chapter: lang === 'es' ? 'Capítulo III' : 'Chapter III',
+        title: "D'Pavel Coffee Experience",
         description: lang === 'es'
-            ? "Herramienta automatizada para la descarga y procesamiento de flujos de medios."
-            : "Automated tool for downloading and processing media streams.",
-        tech: ["Python", "PyTube", "yt-dlp", "FFmpeg"],
-        link: "https://github.com/Jorge-Luis-Herrera/YT-Video-Downloader",
+            ? 'Experiencia de catálogo para cafetería con navegación visual y flujo de compra orientado a retail.'
+            : 'Cafe catalog experience with visual browsing and a retail-oriented purchase flow.',
+        tech: ['Vue', 'Node.js', 'PostgreSQL'],
+        link: 'https://github.com/Jorge-Luis-Herrera/Catalogo-DPavel',
+        liveLink: 'http://dpavel-gzdgamcvhzgja8h0.eastus-01.azurewebsites.net/',
+        thumbnail: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80',
         essay: {
             problem: lang === 'es'
-                ? "Extracción ineficiente de contenido multimedia para análisis offline."
-                : "Inefficient extraction of multimedia content for offline analysis.",
+                ? 'La marca necesitaba una presencia digital cálida y con identidad propia.'
+                : 'The brand needed a warm digital presence with its own identity.',
             solution: lang === 'es'
-                ? "Scripting en Python para automatizar el flujo de descarga y conversión."
-                : "Python scripting to automate the download and conversion flow.",
+                ? 'Interfaz inmersiva con micro-interacciones y un catálogo fluido para productos de cafetería.'
+                : 'Immersive interface with micro-interactions and a fluid catalog for cafe products.',
             outcome: lang === 'es'
-                ? "Procesamiento de medios simplificado con integración de FFmpeg."
-                : "Simplified media processing with FFmpeg integration."
+                ? 'Una experiencia digital más consistente con la propuesta de la cafetería.'
+                : 'A more consistent digital experience aligned with the cafe concept.'
         }
     },
-    // --- ANDROID ---
     {
         category: 'fullstack',
-        chapter: lang === 'es' ? "Capítulo IV" : "Chapter IV",
-        title: lang === 'es' ? "Backend Architectures" : "Backend Architectures",
+        chapter: lang === 'es' ? 'Capítulo IV' : 'Chapter IV',
+        title: 'YT Video Downloader',
         description: lang === 'es'
-            ? "Repositorio de patrones y herramientas ('armas') para el desarrollo backend rápido y estandarizado."
-            : "Curated repository of patterns and tools ('weapons') for rapid and standardized backend development.",
-        tech: ["Node.js", "Express", "C#", "SQL"],
-        link: "https://github.com/Jorge-Luis-Herrera/Backend_Programming",
+            ? 'Utilidad de consola para verificar y descargar videos de YouTube en MP4 con nombres seguros.'
+            : 'Console utility to verify and download YouTube videos as MP4 with safe file names.',
+        tech: ['C#', '.NET', 'YoutubeExplode'],
+        link: 'https://github.com/Jorge-Luis-Herrera/YT-Video-Downloader',
         essay: {
             problem: lang === 'es'
-                ? "La complejidad de aprender e implementar patrones de backend estandarizados de manera rápida."
-                : "Complexity in learning and implementing standardized backend patterns rapidly.",
+                ? 'Necesidad de una descarga simple y confiable de videos para uso offline.'
+                : 'Need for a simple, reliable way to download videos for offline use.',
             solution: lang === 'es'
-                ? "Una colección curada de arquitecturas y utilidades listas para producción."
-                : "A curated collection of architectures and utilities ready for production.",
+                ? 'Cliente de consola con validación previa y descarga asistida por YoutubeExplode.'
+                : 'Console client with pre-validation and downloads powered by YoutubeExplode.',
             outcome: lang === 'es'
-                ? "Base de conocimiento reutilizable que acelera el tiempo de desarrollo inicial."
-                : "Reusable knowledge base that accelerates initial development time."
+                ? 'Flujo directo para obtener videos en MP4 con manejo básico de errores.'
+                : 'Straightforward flow to obtain MP4 videos with basic error handling.'
+        }
+    },
+    {
+        category: 'fullstack',
+        chapter: lang === 'es' ? 'Capítulo V' : 'Chapter V',
+        title: 'Backend Programming',
+        description: lang === 'es'
+            ? 'Repositorio curado de patrones, utilidades y arquitecturas para acelerar desarrollos backend.'
+            : 'Curated repository of patterns, utilities, and architectures to speed up backend development.',
+        tech: ['Node.js', 'Express', 'C#', 'SQL'],
+        link: 'https://github.com/Jorge-Luis-Herrera/Backend_Programming',
+        essay: {
+            problem: lang === 'es'
+                ? 'Aprender e implementar patrones backend sin una guía práctica consume demasiado tiempo.'
+                : 'Learning and implementing backend patterns without practical guidance takes too much time.',
+            solution: lang === 'es'
+                ? 'Colección de referencias y arquitecturas listas para reutilizar.'
+                : 'A collection of references and architectures ready for reuse.',
+            outcome: lang === 'es'
+                ? 'Base de conocimiento reutilizable que acelera la puesta en marcha de nuevos servicios.'
+                : 'Reusable knowledge base that speeds up new service launches.'
         }
     },
     // --- DEVOPS ---
     {
         category: 'devops',
-        chapter: lang === 'es' ? "Capítulo V" : "Chapter V",
-        title: "AutoPilot Core",
+        chapter: lang === 'es' ? 'Capítulo VI' : 'Chapter VI',
+        title: 'Automation Projects',
         description: lang === 'es'
-            ? "Suite de automatización para tareas de sistema y orquestación de flujos de trabajo."
-            : "Automation suite for system tasks and workflow orchestration.",
-        tech: ["Python", "Bash", "Cron"],
-        link: "https://github.com/Jorge-Luis-Herrera/Automation-Projects",
+            ? 'Scripts de automatización para tareas repetitivas y orquestación de flujos de trabajo.'
+            : 'Automation scripts for repetitive tasks and workflow orchestration.',
+        tech: ['Python', 'Bash', 'Cron'],
+        link: 'https://github.com/Jorge-Luis-Herrera/Automation-Projects',
         essay: {
             problem: lang === 'es'
-                ? "Tareas repetitivas de administración de sistemas que consumen tiempo crítico."
-                : "Repetitive system administration tasks consuming critical time.",
+                ? 'Las tareas repetitivas de administración consumen tiempo y aumentan los errores manuales.'
+                : 'Repetitive administration tasks consume time and increase manual errors.',
             solution: lang === 'es'
-                ? "Framework de scripts modulares para la automatización proactiva."
-                : "Modular scripting framework for proactive automation.",
+                ? 'Framework de scripts modulares para automatizar procesos frecuentes.'
+                : 'Modular scripting framework to automate frequent processes.',
             outcome: lang === 'es'
-                ? "Reducción drástica del overhead operativo y errores manuales."
-                : "Drastic reduction in operational overhead and manual errors."
+                ? 'Menor overhead operativo y menos fricción en tareas rutinarias.'
+                : 'Lower operational overhead and less friction in routine tasks.'
         }
     },
     {
         category: 'devops',
-        chapter: lang === 'es' ? "Capítulo VI" : "Chapter VI",
-        title: "Thesis Insight Scraper",
+        chapter: lang === 'es' ? 'Capítulo VII' : 'Chapter VII',
+        title: 'Thesis Insight Scraper',
         description: lang === 'es'
-            ? "Mecanismo de scraping avanzado para la recolección de datos académicos no indexados."
-            : "Advanced scraping mechanism for collecting non-indexed academic data.",
-        tech: ["Selenium", "BeautifulSoup", "Python"],
-        link: "https://github.com/Jorge-Luis-Herrera/Cuban-Tesis-Scrapper",
+            ? 'Scraper para recopilar datos académicos dispersos y convertirlos en información estructurada.'
+            : 'Scraper for collecting scattered academic data and turning it into structured information.',
+        tech: ['Selenium', 'BeautifulSoup', 'Python'],
+        link: 'https://github.com/Jorge-Luis-Herrera/Cuban-Tesis-Scrapper',
         essay: {
             problem: lang === 'es'
-                ? "Dificultad para acceder y tabular datos académicos dispersos en la web."
-                : "Difficulty in accessing and tabulating academic data scattered across the web.",
+                ? 'La información académica estaba dispersa y era difícil de tabular de forma confiable.'
+                : 'Academic information was scattered and hard to tabulate reliably.',
             solution: lang === 'es'
-                ? "Crawler automatizado con manejo de estados dinámicos mediante Selenium."
-                : "Automated crawler with dynamic state handling using Selenium.",
+                ? 'Crawler automatizado con Selenium y extracción HTML con BeautifulSoup.'
+                : 'Automated crawler with Selenium and HTML extraction using BeautifulSoup.',
             outcome: lang === 'es'
-                ? "Extracción masiva de datos estructurados para investigación científica."
-                : "Massive structured data extraction for scientific research."
+                ? 'Extracción masiva de datos estructurados para análisis e investigación.'
+                : 'Massive extraction of structured data for analysis and research.'
         }
     },
     {
         category: 'devops',
-        chapter: lang === 'es' ? "Capítulo VII" : "Chapter VII",
-        title: "CecilOs Kernel",
+        chapter: lang === 'es' ? 'Capítulo VIII' : 'Chapter VIII',
+        title: 'CecilOs',
         description: lang === 'es'
-            ? "Proyecto de desarrollo de sistemas operativos de bajo nivel."
-            : "Low-level operating systems development project.",
-        tech: ["C", "Assembly", "QEMU"],
-        link: "https://github.com/Jorge-Luis-Herrera/CecilOs",
+            ? 'Agente de escritorio 100% local para Linux Wayland con voz, visión y ejecución modular.'
+            : '100% local desktop agent for Linux Wayland with voice, vision, and modular execution.',
+        tech: ['Python', 'Wayland', 'Moonshine', 'Piper'],
+        link: 'https://github.com/Jorge-Luis-Herrera/CecilOs',
         essay: {
             problem: lang === 'es'
-                ? "Comprensión de la abstracción de hardware y gestión de memoria."
-                : "Understanding hardware abstraction and memory management.",
+                ? 'Controlar el escritorio con contexto y privacidad sin depender de servicios en la nube.'
+                : 'Controlling the desktop with context and privacy without relying on cloud services.',
             solution: lang === 'es'
-                ? "Implementación de un kernel básico con soporte de arranque y gestión de E/S."
-                : "Implementation of a basic kernel with boot support and I/O management.",
+                ? 'Arquitectura modular con voz, visión de pantalla y ejecución local coordinada por módulos.'
+                : 'Modular architecture with voice, screen vision, and local execution coordinated by modules.',
             outcome: lang === 'es'
-                ? "Conocimiento profundo de la interacción software-hardware."
-                : "Deep knowledge of software-hardware interaction."
+                ? 'Asistente local robusto, privado y orientado a automatizar tareas complejas.'
+                : 'A robust, private local assistant oriented toward automating complex tasks.'
         }
     },
     // --- AI & SCIENCE ---
     {
         category: 'ai',
-        chapter: lang === 'es' ? "Capítulo VIII" : "Chapter VIII",
-        title: "Data Horizon EDA",
+        chapter: lang === 'es' ? 'Capítulo IX' : 'Chapter IX',
+        title: 'EDA Course',
         description: lang === 'es'
-            ? "Análisis Exploratorio de Datos avanzado para descubrir patrones científicos."
-            : "Advanced Exploratory Data Analysis to discover scientific patterns.",
-        tech: ["Pandas", "NumPy", "Matplotlib", "Seaborn"],
-        link: "https://github.com/Jorge-Luis-Herrera/EDA_Course",
+            ? 'Curso y apuntes sobre estructuras de datos, complejidad temporal y recorridos de árboles.'
+            : 'Course notes on data structures, time complexity, and tree traversals.',
+        tech: ['Markdown', 'C#', 'Python'],
+        link: 'https://github.com/Jorge-Luis-Herrera/EDA_Course',
         essay: {
             problem: lang === 'es'
-                ? "Ruido estadístico en datasets crudos que impide la toma de decisiones."
-                : "Statistical noise in raw datasets preventing decision making.",
+                ? 'Hace falta material claro para estudiar complejidad y estructuras de datos paso a paso.'
+                : 'Clear material is needed to study complexity and data structures step by step.',
             solution: lang === 'es'
-                ? "Aplicación de técnicas de limpieza y visualización estadística proactiva."
-                : "Application of cleaning techniques and proactive statistical visualization.",
+                ? 'Apuntes con ejemplos visuales, fórmulas y recorridos implementados en C#.'
+                : 'Notes with visual examples, formulas, and traversals implemented in C#.',
             outcome: lang === 'es'
-                ? "Insights accionables y modelos de datos validados estadísticamente."
-                : "Actionable insights and statistically validated data models."
+                ? 'Base didáctica sólida para revisar teoría y práctica de algoritmos.'
+                : 'A solid learning base for reviewing algorithm theory and practice.'
         }
     },
     {
         category: 'ai',
-        chapter: lang === 'es' ? "Capítulo IX" : "Chapter IX",
-        title: "Algorithmic Foundations",
+        chapter: lang === 'es' ? 'Capítulo X' : 'Chapter X',
+        title: 'Discrete Math Foundations',
         description: lang === 'es'
-            ? "Implementación de conceptos fundamentales en matemáticas discretas y algoritmos."
-            : "Implementation of fundamental concepts in discrete mathematics and algorithms.",
-        tech: ["LaTeX", "Python", "Discrete Math"],
-        link: "https://github.com/Jorge-Luis-Herrera/Discrete_Math",
+            ? 'Cuaderno introductorio de teoría discreta, grafos y fundamentos matemáticos para algoritmos.'
+            : 'Introductory notebook on discrete theory, graphs, and mathematical foundations for algorithms.',
+        tech: ['LaTeX', 'Python', 'Discrete Math'],
+        link: 'https://github.com/Jorge-Luis-Herrera/Discrete_Math',
         essay: {
             problem: lang === 'es'
-                ? "Brecha teórica entre algoritmos complejos y sus fundamentos matemáticos."
-                : "Theoretical gap between complex algorithms and their mathematical foundations.",
+                ? 'La base matemática de los algoritmos suele presentarse de forma poco accesible.'
+                : 'The mathematical basis of algorithms is often presented in a hard-to-approach way.',
             solution: lang === 'es'
-                ? "Documentación y resolución algorítmica de problemas de combinatoria y grafos."
-                : "Documentation and algorithmic resolution of combinatorics and graph problems.",
+                ? 'Notas y ejercicios sobre combinatoria, grafos y fundamentos discretos.'
+                : 'Notes and exercises on combinatorics, graphs, and discrete foundations.',
             outcome: lang === 'es'
-                ? "Base teórica sólida para el desarrollo de sistemas de IA eficientes."
-                : "Solid theoretical foundation for the development of efficient AI systems."
+                ? 'Base teórica más clara para entender algoritmos y sistemas de IA.'
+                : 'Clearer theoretical base for understanding algorithms and AI systems.'
         }
     },
     {
         category: 'ai',
-        chapter: lang === 'es' ? "Capítulo X" : "Chapter X",
-        title: "MarkitDown Pro",
+        chapter: lang === 'es' ? 'Capítulo XI' : 'Chapter XI',
+        title: 'MarkItDown',
         description: lang === 'es'
-            ? "Procesamiento y conversión inteligente de documentos a formato Markdown."
-            : "Intelligent document processing and conversion to Markdown format.",
-        tech: ["Python", "Markdown API"],
-        link: "https://github.com/Jorge-Luis-Herrera/MarkitDown",
+            ? 'Herramienta para convertir documentos a Markdown con un flujo de lectura más legible y automatizable.'
+            : 'Tool for converting documents to Markdown with a more readable and automatable workflow.',
+        tech: ['Python', 'Markdown', 'Document Intelligence'],
+        link: 'https://github.com/Jorge-Luis-Herrera/MarkitDown',
         essay: {
             problem: lang === 'es'
-                ? "Fricción en la portabilidad de contenido entre formatos propietarios y Markdown."
-                : "Friction in content portability between proprietary formats and Markdown.",
+                ? 'La portabilidad entre formatos propietarios y Markdown sigue siendo una fricción común.'
+                : 'Portability between proprietary formats and Markdown remains a common friction point.',
             solution: lang === 'es'
-                ? "Desarrollo de un motor de conversión optimizado para legibilidad."
-                : "Development of a conversion engine optimized for readability.",
+                ? 'Conversión enfocada en legibilidad y reutilización documental.'
+                : 'Conversion focused on readability and document reuse.',
             outcome: lang === 'es'
-                ? "Flujo de trabajo documental agilizado y estandarizado."
-                : "Streamlined and standardized documentary workflow."
+                ? 'Flujo documental más simple para extraer y reutilizar contenido.'
+                : 'Simpler document workflow for extracting and reusing content.'
         }
     }
 ];
