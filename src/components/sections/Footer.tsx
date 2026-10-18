@@ -25,6 +25,7 @@ export const Footer = () => {
         { label: t('nav.home'), href: '#home' },
         { label: t('nav.projects'), href: '#projects' },
         { label: t('nav.skills'), href: '#skills' },
+        { label: t('nav.hobbies'), href: '#hobbies' },
         { label: t('nav.about'), href: '#about' },
     ];
 
@@ -184,8 +185,8 @@ export const Footer = () => {
 
                 {/* Bottom bar */}
                 <div className="py-6 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p className="text-xs font-mono text-muted/80 text-center sm:text-left">
-                        {t('footer.signatureLine')}
+                    <p className="font-signature text-3xl leading-none text-ink sm:text-[2.1rem]">
+                        {t('footer.madeBy')}
                     </p>
                     <a
                         href="#home"

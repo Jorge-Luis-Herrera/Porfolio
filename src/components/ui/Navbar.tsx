@@ -6,7 +6,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { getLenis } from '../../lib/lenis';
 import { Signature } from './Signature';
 
-const SECTIONS = ['home', 'projects', 'skills', 'about', 'contact'] as const;
+const SECTIONS = ['home', 'projects', 'skills', 'hobbies', 'about', 'contact'] as const;
 
 export const Navbar = () => {
     const { t, language, toggleLanguage } = useLanguage();
@@ -53,6 +53,7 @@ export const Navbar = () => {
         home: t('nav.home'),
         projects: t('nav.projects'),
         skills: t('nav.skills'),
+        hobbies: t('nav.hobbies'),
         about: t('nav.about'),
         contact: t('nav.contact'),
     };

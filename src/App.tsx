@@ -6,11 +6,11 @@ import { Preloader } from './components/ui/Preloader'
 import { SmoothScroll } from './components/ui/SmoothScroll'
 import { TechMarquee } from './components/ui/TechMarquee'
 import { Hero } from './components/sections/Hero'
-import { MainProjects } from './components/sections/MainProjects'
+import { ProjectExplorer } from './components/sections/ProjectExplorer'
 import { Stats } from './components/sections/Stats'
 import { Experience } from './components/sections/Experience'
-import { ProjectsSection } from './components/sections/ProjectsSection'
 import { SkillsSection } from './components/sections/SkillsSection'
+import { HobbiesSection } from './components/sections/HobbiesSection'
 import { AboutSection } from './components/sections/AboutSection'
 import { Footer } from './components/sections/Footer'
 import { ProjectModalProvider } from './context/ProjectModalContext'
@@ -32,11 +32,11 @@ function App() {
           <main>
             <Hero />
             <TechMarquee />
-            <MainProjects />
+            <ProjectExplorer />
             <Stats />
             <Experience />
-            <ProjectsSection />
             <SkillsSection />
+            <HobbiesSection />
             <AboutSection />
           </main>
           <Footer />

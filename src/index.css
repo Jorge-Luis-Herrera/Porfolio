@@ -243,6 +243,158 @@ html.has-custom-cursor select {
   box-shadow: 0 22px 60px -28px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
+/* ------------------------------------------------------------------ *
+ *  3D folder — Nautilus/Adwaita folder icon, rebuilt in CSS 3D
+ * ------------------------------------------------------------------ */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.folder3d {
+  --folder-base: color-mix(in srgb, var(--accent) 20%, var(--surface-2));
+  --folder-front: color-mix(in srgb, var(--accent) 34%, var(--surface-2));
+  --folder-edge: color-mix(in srgb, #fff 10%, transparent);
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.folder3d__tab,
+.folder3d__back,
+.folder3d__front,
+.folder3d__paper {
+  position: absolute;
+  display: block;
+}
+
+.folder3d__tab {
+  top: -7px;
+  left: 7%;
+  width: 44%;
+  height: 15px;
+  border-radius: 7px 7px 0 0;
+  background: var(--folder-base);
+  box-shadow: inset 0 1px 0 var(--folder-edge);
+}
+
+.folder3d__back {
+  inset: 0;
+  border-radius: 11px;
+  background: var(--folder-base);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 7%, transparent);
+}
+
+/* Sheets of paper that fan out of the folder */
+.folder3d__paper {
+  left: 11%;
+  right: 11%;
+  bottom: 15%;
+  height: 48%;
+  border-radius: 5px;
+  border: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
+  background:
+    linear-gradient(color-mix(in srgb, var(--ink) 16%, transparent) 0 0) no-repeat 12% 28% / 52% 2px,
+    linear-gradient(color-mix(in srgb, var(--ink) 10%, transparent) 0 0) no-repeat 12% 56% / 32% 2px,
+    color-mix(in srgb, var(--ink) 6%, var(--surface));
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.folder3d__paper--a {
+  transform: translateZ(1px) translateY(4%);
+}
+
+.folder3d__paper--b {
+  transform: translateZ(2px) translateY(0%);
+}
+
+/* The front flap of the folder */
+.folder3d__front {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 76%;
+  border-radius: 11px;
+  background: var(--folder-front);
+  box-shadow: inset 0 1px 0 var(--folder-edge);
+  transform-origin: 50% 100%;
+  transform: translateZ(4px) rotateX(-16deg);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  backface-visibility: hidden;
+}
+
+.folder3d-host:hover .folder3d__front,
+.folder3d-host:focus-visible .folder3d__front,
+.folder3d.is-open .folder3d__front {
+  transform: translateZ(4px) rotateX(-64deg);
+}
+
+.folder3d.is-open .folder3d__paper--a {
+  transform: translateZ(3px) translateY(-52%) rotate(-3.5deg);
+}
+
+.folder3d.is-open .folder3d__paper--b {
+  transform: translateZ(5px) translateY(-70%) rotate(2.5deg);
+}
+
+/* Soft contact shadow under the folder (kept off the 3D element itself) */
+.folder3d__shadow {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: -7px;
+  height: 12px;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--ink) 22%, transparent);
+  filter: blur(7px);
+  opacity: 0.45;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.folder3d-host:hover .folder3d__shadow,
+.folder3d-host:focus-visible .folder3d__shadow {
+  opacity: 0.3;
+  transform: scale(1.06);
+}
+
+/* Fan of folders sitting on a 3D desk (wide screens only) */
+.explorer-fan {
+  perspective: 1200px;
+}
+
+.explorer-fan__item,
+.explorer-fan__icon {
+  transform-style: preserve-3d;
+}
+
+.explorer-fan__icon {
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 640px) {
+  .explorer-fan__icon {
+    transform: rotateX(9deg) rotateZ(var(--fan-tilt, 0deg));
+  }
+
+  .explorer-fan__item:hover .explorer-fan__icon,
+  .explorer-fan__item:focus-within .explorer-fan__icon {
+    transform: rotateX(0deg) rotateZ(0deg) translateY(-8px) scale(1.05);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Hobbies section — graph backdrop + calisthenics figure
+ * ------------------------------------------------------------------ */
+.graph-backdrop {
+  -webkit-mask-image: radial-gradient(ellipse 78% 70% at 50% 45%, #000 25%, transparent 78%);
+  mask-image: radial-gradient(ellipse 78% 70% at 50% 45%, #000 25%, transparent 78%);
+}
+
+.calisthenics-figure {
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--accent) 35%, transparent));
+}
+
 /* Accessibility: honour reduced-motion preferences everywhere */
 @media (prefers-reduced-motion: reduce) {
   html {

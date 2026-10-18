@@ -71,7 +71,7 @@ export const Experience = () => {
                           'Matemática Discreta',
                           'Optimización',
                           'Bases de Datos',
-                          'Computación Científica',
+                          'Programación',
                       ]
                     : [
                           'Algorithms',
@@ -79,7 +79,7 @@ export const Experience = () => {
                           'Discrete Mathematics',
                           'Optimization',
                           'Databases',
-                          'Scientific Computing',
+                          'Programming',
                       ],
         },
         {
