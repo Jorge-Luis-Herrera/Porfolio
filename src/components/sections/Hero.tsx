@@ -52,9 +52,16 @@ export const Hero = () => {
                             transition={{ duration: 0.5 }}
                             className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-4"
                         >
-                            <p className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm text-accent px-3 py-1 rounded-full border border-accent/30 bg-accent/5">
+                            <a
+                                href="https://github.com/Jorge-Luis-Herrera"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="GitHub — Jorge Luis Herrera"
+                                className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm text-accent px-3 py-1 rounded-full border border-accent/30 bg-accent/5 hover:bg-accent/10 hover:border-accent/60 transition-colors"
+                            >
+                                <Github className="w-3.5 h-3.5" />
                                 {t('hero.badge')}
-                            </p>
+                            </a>
                             <a
                                 href={CUBITECH.url}
                                 target="_blank"
@@ -156,10 +163,9 @@ export const Hero = () => {
             <a
                 href="#projects"
                 aria-label={t('hero.cta.projects')}
-                className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted hover:text-accent transition-colors"
+                className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2"
             >
-                <span className="font-mono text-[10px] uppercase tracking-[0.25em]">{t('hero.scroll')}</span>
-                <span className="w-px h-8 bg-gradient-to-b from-accent/60 to-transparent relative overflow-hidden">
+                <span className="w-px h-10 bg-gradient-to-b from-accent/60 to-transparent relative overflow-hidden">
                     <span className="absolute inset-x-0 top-0 h-3 bg-accent animate-scroll-hint" />
                 </span>
             </a>
