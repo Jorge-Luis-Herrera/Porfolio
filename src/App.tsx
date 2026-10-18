@@ -4,6 +4,7 @@ import { Spotlight } from './components/ui/Spotlight'
 import { CustomCursor } from './components/ui/CustomCursor'
 import { Preloader } from './components/ui/Preloader'
 import { SmoothScroll } from './components/ui/SmoothScroll'
+import { SkewOnScroll } from './components/ui/SkewOnScroll'
 import { TechMarquee } from './components/ui/TechMarquee'
 import { Hero } from './components/sections/Hero'
 import { ProjectExplorer } from './components/sections/ProjectExplorer'
@@ -29,7 +30,7 @@ function App() {
 
         <div className="relative z-10">
           <Navbar />
-          <main>
+          <SkewOnScroll>
             <Hero />
             <TechMarquee />
             <ProjectExplorer />
@@ -38,7 +39,7 @@ function App() {
             <SkillsSection />
             <HobbiesSection />
             <AboutSection />
-          </main>
+          </SkewOnScroll>
           <Footer />
         </div>
       </div>

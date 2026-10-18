@@ -1,5 +1,6 @@
 import { FlipCounter } from '../ui/FlipCounter';
 import { Reveal } from '../ui/Reveal';
+import { ScrambleText } from '../ui/ScrambleText';
 import { useLanguage } from '../../context/LanguageContext';
 import { projects } from '../../data/projects';
 import { TECHNOLOGIES, SPOKEN_LANGUAGES } from '../../data/tech';
@@ -29,9 +30,11 @@ export const Stats = () => {
                                     delay={i * 0.12}
                                     className="font-display font-bold text-3xl sm:text-4xl text-ink"
                                 />
-                                <span className="mt-2 block font-mono text-[11px] sm:text-xs uppercase tracking-wider text-muted">
-                                    {s.label}
-                                </span>
+                                <ScrambleText
+                                    as="span"
+                                    className="mt-2 block font-mono text-[11px] sm:text-xs uppercase tracking-wider text-muted"
+                                    text={s.label}
+                                />
                             </dd>
                         </Reveal>
                     ))}

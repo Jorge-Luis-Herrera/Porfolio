@@ -67,6 +67,36 @@
     @apply text-2xl sm:text-3xl md:text-4xl font-display text-ink;
   }
 
+  /* Heading underline that draws itself while the section scrolls in. Native
+     scroll-driven animation (CSS view() timeline): no JavaScript, and it just
+     stays put where it is not supported. */
+  @supports (animation-timeline: view()) {
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 3.25rem;
+      height: 2px;
+      margin-top: 0.55rem;
+      border-radius: 9999px;
+      background: linear-gradient(
+        90deg,
+        var(--accent),
+        color-mix(in srgb, var(--accent) 12%, transparent)
+      );
+      transform-origin: left center;
+      animation: underline-grow linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 26%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .section-title::after {
+      animation: none;
+      transform: none;
+    }
+  }
+
   .chip {
     @apply inline-flex items-center gap-1.5 rounded-md bg-surface-2 border border-line px-2.5 py-1 text-[11px] sm:text-xs font-mono text-muted;
   }
@@ -84,6 +114,15 @@
 /* ------------------------------------------------------------------ *
  *  Motion layer
  * ------------------------------------------------------------------ */
+
+@keyframes underline-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
 
 /* Technical grid backdrop (scientific/blueprint feel) */
 .grid-bg {

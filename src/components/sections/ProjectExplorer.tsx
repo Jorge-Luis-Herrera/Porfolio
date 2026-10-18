@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import type { CSSProperties, PointerEvent as ReactPointerEvent } from 'react';
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
 import {
@@ -507,8 +508,12 @@ export const ProjectExplorer = () => {
                 </motion.div>
             </div>
 
-            {/* Floating preview: shows the first highlight, which the file tile does not. */}
-            <AnimatePresence>
+            {/* Floating preview: shows the first highlight, which the file tile
+                does not. Lives in a portal so its fixed position never depends
+                on an ancestor transform. */}
+            {typeof document !== 'undefined' &&
+                createPortal(
+                    <AnimatePresence>
                 {peek && finePointer && !reduceMotion && (
                     <motion.div
                         key="project-peek"
@@ -550,7 +555,9 @@ export const ProjectExplorer = () => {
                         </div>
                     </motion.div>
                 )}
-            </AnimatePresence>
+                    </AnimatePresence>,
+                    document.body
+                )}
         </section>
     );
 };
