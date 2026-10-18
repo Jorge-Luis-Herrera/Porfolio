@@ -128,9 +128,9 @@ export const Hero = () => {
                             <AnimatePresence mode="wait">
                                 <motion.span
                                     key={roleIndex}
-                                    initial={{ opacity: 0, y: 12, filter: 'blur(6px)' }}
-                                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                                    exit={{ opacity: 0, y: -12, filter: 'blur(6px)' }}
+                                    initial={{ opacity: 0, y: 12 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -12 }}
                                     transition={{ duration: 0.32 }}
                                     className="text-ink"
                                 >

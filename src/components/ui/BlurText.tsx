@@ -1,5 +1,7 @@
+import { useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import type { ElementType } from 'react';
+import { clearResidualFilter } from '../../lib/motion';
 
 interface BlurTextProps {
     text: string;
@@ -21,6 +23,7 @@ export const BlurText = ({
     stagger = 0.045,
 }: BlurTextProps) => {
     const reduceMotion = useReducedMotion();
+    const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
     const words = text.split(' ');
 
     return (
@@ -28,6 +31,10 @@ export const BlurText = ({
             {words.map((word, index) => (
                 <motion.span
                     key={`${word}-${index}`}
+                    ref={(node) => {
+                        wordRefs.current[index] = node;
+                    }}
+                    onAnimationComplete={() => clearResidualFilter(wordRefs.current[index])}
                     className="inline-block"
                     initial={reduceMotion ? undefined : { opacity: 0, y: 14, filter: 'blur(10px)' }}
                     whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}

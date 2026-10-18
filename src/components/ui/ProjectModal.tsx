@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Github, Wifi, Star } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { getLenis } from '../../lib/lenis';
 import type { Project } from '../../data/projects';
 import { LetterReveal } from './LetterReveal';
+import { clearResidualFilter } from '../../lib/motion';
 
 interface ProjectModalProps {
     project: Project | null;
@@ -16,6 +17,7 @@ const DESC_DELAY = 180;
 
 export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
     const { t, language } = useLanguage();
+    const dialogRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (!project) return;
@@ -71,6 +73,8 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                     />
 
                     <motion.div
+                        ref={dialogRef}
+                        onAnimationComplete={() => clearResidualFilter(dialogRef.current)}
                         initial={{ opacity: 0, y: 64, scale: 0.94, filter: 'blur(10px)' }}
                         animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
                         exit={{ opacity: 0, y: 40, scale: 0.97, filter: 'blur(6px)' }}
