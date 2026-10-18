@@ -4,55 +4,79 @@
 
 @layer base {
   :root {
-    /* Dark Academia (Default) */
-    --background: #0f172a;
-    --paper: #1a1a1a;
-    --accent: #fbbf24;
-    --technical: #38bdf8;
-    --text-soft: #f8fafc;
-    --stardust-opacity: 0.03;
+    /* Light — clean SaaS (default) */
+    --background-rgb: 250 250 250;
+    --surface-rgb: 255 255 255;
+    --surface-2-rgb: 241 243 248;
+    --accent-rgb: 79 70 229;
+    --accent-strong-rgb: 67 56 202;
+    --ink-rgb: 15 23 42;
+    --muted-rgb: 90 100 120;
+
+    --background: rgb(var(--background-rgb));
+    --surface: rgb(var(--surface-rgb));
+    --surface-2: rgb(var(--surface-2-rgb));
+    --accent: rgb(var(--accent-rgb));
+    --accent-strong: rgb(var(--accent-strong-rgb));
+    --ink: rgb(var(--ink-rgb));
+    --muted: rgb(var(--muted-rgb));
+    --line: rgba(15, 23, 42, 0.08);
   }
 
-  :root.light {
-    /* Light Academia */
-    --background: #fdfcf0;
-    --paper: #ffffff;
-    --accent: #b8860b;
-    --technical: #4682b4;
-    --text-soft: #2d2d2d;
-    --stardust-opacity: 0.05;
+  :root:not(.light) {
+    /* Dark — deep, calm */
+    --background-rgb: 10 11 16;
+    --surface-rgb: 16 19 32;
+    --surface-2-rgb: 22 26 40;
+    --accent-rgb: 129 140 248;
+    --accent-strong-rgb: 99 102 241;
+    --ink-rgb: 230 232 238;
+    --muted-rgb: 154 161 178;
+
+    --line: rgba(255, 255, 255, 0.08);
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-background text-white-soft font-sans antialiased transition-colors duration-500;
-    background-image: radial-gradient(circle at 50% 50%, rgba(var(--background-rgb, 15, 23, 42), 0.8) 0%, var(--background) 100%),
-      url("https://www.transparenttextures.com/patterns/stardust.png");
+    @apply bg-base text-ink font-sans antialiased transition-colors duration-300;
   }
 
-  h1,
-  h2,
-  h3,
-  h4 {
-    @apply font-serif;
+  h1, h2, h3, h4 {
+    @apply font-display font-medium tracking-tight;
   }
 
   code {
     @apply font-mono;
   }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 }
 
-.writer-reveal span {
-  display: inline-block;
-  opacity: 0;
-  filter: blur(4px);
-  transform: translateY(10px);
-  animation: reveal 0.5s forwards;
-}
+@layer components {
+  .section-title {
+    @apply text-2xl sm:text-3xl md:text-4xl font-display text-ink;
+  }
 
-@keyframes reveal {
-  to {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-md bg-surface-2 border border-line px-2.5 py-1 text-[11px] sm:text-xs font-mono text-muted;
+  }
+
+  .card {
+    @apply bg-surface border border-line rounded-xl transition-all duration-200;
+  }
+
+  .card:hover {
+    @apply border-accent/40 -translate-y-0.5;
+    box-shadow: 0 8px 30px -12px color-mix(in srgb, var(--accent) 25%, transparent);
   }
 }

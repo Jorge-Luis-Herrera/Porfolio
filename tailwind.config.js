@@ -8,16 +8,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        paper: "var(--paper)",
-        accent: "var(--accent)",
-        technical: "var(--technical)",
-        "white-soft": "var(--text-soft)",
+        base: "rgb(var(--background-rgb) / <alpha-value>)",
+        surface: "rgb(var(--surface-rgb) / <alpha-value>)",
+        "surface-2": "rgb(var(--surface-2-rgb) / <alpha-value>)",
+        line: "var(--line)",
+        accent: "rgb(var(--accent-rgb) / <alpha-value>)",
+        "accent-strong": "rgb(var(--accent-strong-rgb) / <alpha-value>)",
+        ink: "rgb(var(--ink-rgb) / <alpha-value>)",
+        muted: "rgb(var(--muted-rgb) / <alpha-value>)",
       },
       fontFamily: {
-        serif: ["'Playfair Display'", "serif"],
-        sans: ["Inter", "sans-serif"],
-        mono: ["'JetBrains Mono'", "monospace"],
+        display: ["'Space Grotesk'", "sans-serif"],
+        sans: ["Inter", "system-ui", "sans-serif"],
+        mono: ["'JetBrains Mono'", "ui-monospace", "monospace"],
       },
     },
   },

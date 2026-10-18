@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, type ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 
 type Language = 'es' | 'en';
 
@@ -10,98 +10,106 @@ interface LanguageContextType {
 
 const translations = {
     es: {
-        'nav.projects': 'Antología de Proyectos',
-        'nav.docs': 'Documentaciones & Cursos',
-        'nav.personal': 'Información Personal',
-        'nav.blueprint': 'The Blueprint',
-        'nav.contact': 'Epílogo: Contacto',
-        'hero.badge': '01 // Introducción',
-        'hero.title': 'Donde el bit se convierte',
-        'hero.title.ink': 'en tinta.',
-        'hero.description': 'Estudiante de ciencias de la computación forjando arquitecturas distribuidas con la elegancia narrativa de un escritor y el rigor implacable de un compilador. Especializado en sistemas de alto rendimiento y soluciones de IA con propósito.',
-        'gallery.title': 'Antología de Proyectos',
-        'gallery.readEssay': 'Leer Ensayo',
-        'tech.title': 'Índice de Materias',
-        'tech.subtitle': 'Capacidades Nucleares',
-        'footer.epilogue': 'El Epílogo',
-        'footer.description': 'Cada sistema es una historia que merece ser bien contada. Si tienes un desafío técnico que requiera una narrativa arquitectónica sólida, hablemos.',
-        'footer.copy': 'Escrito en código por Jorge • © 2026',
-        'modal.essayTitle': 'Ensayo Técnico',
-        'modal.chapter': 'Capítulo',
-        'modal.conflict': 'I. El Conflicto',
-        'modal.architecture': 'II. La Arquitectura',
-        'modal.technicalEpilogue': 'III. El Epílogo Técnico',
-        'modal.repo': 'Ver Repositorio',
-        'pillars.fullstack': 'Arquitectura FullStack',
-        'pillars.android': 'Sistemas Mobile (Android)',
-        'pillars.devops': 'Infraestructura & DevOps',
-        'pillars.ai': 'IA & Automatizaciones',
-        'pillars.viewStack': 'Explorar Volúmenes',
-        'hero.author': 'Si puedes imaginarlo, puedes programarlo',
-        'library.title': 'Índice de Materias',
-        'library.subtitle': 'Capacidades Nucleares',
-        'library.infra': 'Sistemas & Infraestructura',
-        'library.ai': 'Inteligencia & Datos',
-        'library.backend': 'Arquitectura & Backend',
-        'library.security': 'Seguridad & Integridad',
-        'blueprint.title': 'El Plano (The Blueprint)',
-        'blueprint.subtitle': 'Documentación Científica',
-        'blueprint.motor.title': 'I. El Motor (React + Vite)',
-        'blueprint.motor.desc': 'Elegí Vite por su entorno de desarrollo instantáneo. La reactividad de React permite manejar estados complejos como la traducción y ensayos modales.',
-        'blueprint.style.title': 'II. Estética & Capas (Tailwind)',
-        'blueprint.style.desc': 'Tailwind CSS proporciona el control atómico para la estética Dark Academia, permitiendo paletas sofisticadas sin librerías pesadas.',
-        'blueprint.motion.title': 'III. Narrativa Fluida (Framer)',
-        'blueprint.motion.desc': 'Framer Motion orquestra la narrativa visual, emulando la fluidez de un ensayo científico bien estructurado.',
-        'blueprint.data.title': 'IV. Arquitectura del Dato (Context)',
-        'blueprint.data.desc': 'Implementé un LanguageContext personalizado para asegurar que la "voz del autor" sea coherente en todos los volúmenes.',
-        'blueprint.download': 'Descargar Paper Técnico (PDF próximamente)',
+        'nav.home': 'Inicio',
+        'nav.projects': 'Proyectos',
+        'nav.skills': 'Habilidades',
+        'nav.about': 'Sobre mí',
+        'nav.contact': 'Contacto',
+        'nav.menu': 'Menú',
+        'nav.close': 'Cerrar',
+
+        'hero.badge': 'Estudiante de Ciencias de la Computación',
+        'hero.title.pre': 'Construyo software',
+        'hero.title.highlight': 'que funciona.',
+        'hero.description': 'Full-stack, sistemas y automatización. Me enfoco en proyectos reales: tiendas en línea desplegadas en la nube, herramientas de datos y agentes locales con IA.',
+        'hero.cta.projects': 'Ver proyectos',
+        'hero.cta.cv': 'Descargar CV',
+        'hero.cta.contact': 'Contactar',
+
+        'projects.title': 'Proyectos',
+        'projects.subtitle': 'Selección de trabajo real en GitHub',
+        'projects.filter.all': 'Todos',
+        'projects.filter.featured': 'Destacados · Full-stack',
+        'projects.filter.backend': 'Backend & Sistemas',
+        'projects.filter.automation': 'IA & Automatización',
+        'projects.filter.academic': 'Académico',
+        'projects.viewRepo': 'Repositorio',
+        'projects.viewLive': 'Ver en vivo',
+        'projects.empty': 'No hay proyectos en esta categoría aún.',
+
+        'skills.title': 'Habilidades',
+        'skills.subtitle': 'Tecnologías que uso en proyectos reales',
+        'skills.languages': 'Lenguajes',
+        'skills.frontend': 'Frontend',
+        'skills.backend': 'Backend & Datos',
+        'skills.tools': 'Herramientas & DevOps',
+
+        'about.title': 'Sobre mí',
+        'about.p1': 'Soy estudiante de Ciencias de la Computación. Empecé programando por curiosidad y hoy desarrollo proyectos full-stack completos: desde el diseño del frontend hasta el backend, la base de datos y el despliegue en la nube.',
+        'about.p2': 'Me interesa el desarrollo de sistemas: automatizar procesos, extraer datos y construir herramientas útiles. Cada proyecto de mi GitHub resuelve un problema concreto.',
+        'about.soft.title': 'Habilidades blandas',
+        'about.soft.leadership': 'Liderazgo (CTO en equipos académicos)',
+        'about.soft.speed': 'Aprendizaje y entrega rápida',
+        'about.soft.creativity': 'Creatividad aplicada al producto',
+        'about.soft.understanding': 'Comprensión profunda de problemas',
+        'about.soft.docs': 'Documentación rigorosa',
+        'about.soft.predictions': 'Pensamiento analítico y predicción',
+
+        'contact.title': '¿Trabajamos juntos?',
+        'contact.description': 'Estoy abierto a pasantías, proyectos freelance y colaboraciones. Escríbeme por el canal que prefieras.',
+        'contact.email': 'Email',
+        'footer.copy': '© 2026 Jorge Luis Herrera — Construido con React + Vite',
     },
     en: {
-        'nav.projects': 'Project Anthology',
-        'nav.docs': 'Documentation & Courses',
-        'nav.personal': 'Personal Information',
-        'nav.blueprint': 'The Blueprint',
-        'nav.contact': 'Epilogue: Contact',
-        'hero.badge': '01 // Introduction',
-        'hero.title': 'Where the bit turns',
-        'hero.title.ink': 'into ink.',
-        'hero.description': 'Computer science student forging distributed architectures with a writer\'s narrative elegance and a compiler\'s implacable rigor. Specialized in high-performance systems and purposeful AI solutions.',
-        'gallery.title': 'Project Anthology',
-        'gallery.readEssay': 'Read Essay',
-        'tech.title': 'Table of Contents',
-        'tech.subtitle': 'Core Capabilities',
-        'footer.epilogue': 'The Epilogue',
-        'footer.description': 'Every system is a story that deserves to be well told. If you have a technical challenge that requires a solid architectural narrative, let\'s talk.',
-        'footer.copy': 'Written in code by Jorge • © 2026',
-        'modal.essayTitle': 'Technical Essay',
-        'modal.chapter': 'Chapter',
-        'modal.conflict': 'I. The Conflict',
-        'modal.architecture': 'II. The Architecture',
-        'modal.technicalEpilogue': 'III. The Technical Epilogue',
-        'modal.repo': 'View Repository',
-        'pillars.fullstack': 'FullStack Architecture',
-        'pillars.android': 'Mobile Systems (Android)',
-        'pillars.devops': 'Infrastructure & DevOps',
-        'pillars.ai': 'AI & Automations',
-        'pillars.viewStack': 'Explore Volumes',
-        'hero.author': 'If you can imagine it, you can program it',
-        'library.title': 'Table of Contents',
-        'library.subtitle': 'Core Capabilities',
-        'library.infra': 'Systems & Infrastructure',
-        'library.ai': 'Intelligence & Data',
-        'library.backend': 'Architecture & Backend',
-        'library.security': 'Security & Integrity',
-        'blueprint.title': 'The Blueprint',
-        'blueprint.subtitle': 'Scientific Documentation',
-        'blueprint.motor.title': 'I. The Engine (React + Vite)',
-        'blueprint.motor.desc': 'I chose Vite for its instant development environment. React\'s reactivity allows for managing complex states like translation and modal essays.',
-        'blueprint.style.title': 'II. Aesthetics & Layers (Tailwind)',
-        'blueprint.style.desc': 'Tailwind CSS provides the atomic control for the Dark Academia aesthetic, allowing for sophisticated palettes without heavy libraries.',
-        'blueprint.motion.title': 'III. Fluid Narrative (Framer)',
-        'blueprint.motion.desc': 'Framer Motion orchestrates the visual narrative, emulating the fluidity of a well-structured scientific essay.',
-        'blueprint.data.title': 'IV. Data Architecture (Context)',
-        'blueprint.data.desc': 'I implemented a custom LanguageContext to ensure the "author\'s voice" is consistent across all volumes.',
-        'blueprint.download': 'Download Technical Paper (PDF Coming Soon)',
+        'nav.home': 'Home',
+        'nav.projects': 'Projects',
+        'nav.skills': 'Skills',
+        'nav.about': 'About',
+        'nav.contact': 'Contact',
+        'nav.menu': 'Menu',
+        'nav.close': 'Close',
+
+        'hero.badge': 'Computer Science Student',
+        'hero.title.pre': 'I build software',
+        'hero.title.highlight': 'that works.',
+        'hero.description': 'Full-stack, systems, and automation. I focus on real projects: online stores deployed to the cloud, data tools, and local AI agents.',
+        'hero.cta.projects': 'View projects',
+        'hero.cta.cv': 'Download CV',
+        'hero.cta.contact': 'Get in touch',
+
+        'projects.title': 'Projects',
+        'projects.subtitle': 'A selection of real work on GitHub',
+        'projects.filter.all': 'All',
+        'projects.filter.featured': 'Featured · Full-stack',
+        'projects.filter.backend': 'Backend & Systems',
+        'projects.filter.automation': 'AI & Automation',
+        'projects.filter.academic': 'Academic',
+        'projects.viewRepo': 'Repository',
+        'projects.viewLive': 'Live demo',
+        'projects.empty': 'No projects in this category yet.',
+
+        'skills.title': 'Skills',
+        'skills.subtitle': 'Technologies I actually use in shipped projects',
+        'skills.languages': 'Languages',
+        'skills.frontend': 'Frontend',
+        'skills.backend': 'Backend & Data',
+        'skills.tools': 'Tools & DevOps',
+
+        'about.title': 'About me',
+        'about.p1': "I'm a Computer Science student. I started coding out of curiosity and today I build complete full-stack projects: from frontend design to backend, database, and cloud deployment.",
+        'about.p2': "I'm interested in systems development: automating processes, extracting data, and building useful tools. Every project on my GitHub solves a concrete problem.",
+        'about.soft.title': 'Soft skills',
+        'about.soft.leadership': 'Leadership (CTO in academic teams)',
+        'about.soft.speed': 'Fast learning and delivery',
+        'about.soft.creativity': 'Product-driven creativity',
+        'about.soft.understanding': 'Deep problem understanding',
+        'about.soft.docs': 'Rigorous documentation',
+        'about.soft.predictions': 'Analytical thinking and forecasting',
+
+        'contact.title': "Let's work together",
+        'contact.description': "I'm open to internships, freelance projects, and collaborations. Reach out through your favorite channel.",
+        'contact.email': 'Email',
+        'footer.copy': '© 2026 Jorge Luis Herrera — Built with React + Vite',
     }
 };
 
@@ -110,12 +118,16 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [language, setLanguage] = useState<Language>('es');
 
+    useEffect(() => {
+        document.documentElement.lang = language;
+    }, [language]);
+
     const toggleLanguage = () => {
         setLanguage((prev) => (prev === 'es' ? 'en' : 'es'));
     };
 
     const t = (key: string) => {
-        return (translations[language] as any)[key] || key;
+        return (translations[language] as Record<string, string>)[key] || key;
     };
 
     return (
@@ -125,6 +137,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useLanguage = () => {
     const context = useContext(LanguageContext);
     if (context === undefined) {
