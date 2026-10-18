@@ -5,9 +5,9 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portafolio de Jorge Luis Herrera — Desarrollador full-stack freelance y CTO en Cubit Technologies. Aplicaciones web, herramientas de datos y automatización." />
+    <meta name="description" content="Portafolio de Jorge Luis Herrera — Desarrollador full-stack freelance y CTO en CubiTech. Aplicaciones web, herramientas de datos y automatización." />
     <meta property="og:title" content="Jorge Luis Herrera — Software Developer" />
-    <meta property="og:description" content="Desarrollador full-stack freelance y CTO en Cubit Technologies. Proyectos reales en GitHub." />
+    <meta property="og:description" content="Desarrollador full-stack freelance y CTO en CubiTech. Proyectos reales en GitHub." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="%BASE_URL%og-image.jpg" />
     <title>Jorge Luis Herrera | Software Developer</title>
@@ -16,6 +16,10 @@
     try {
       var t = localStorage.getItem('portfolio-theme') || 'dark';
       document.documentElement.classList.add(t);
+    } catch (e) {}
+    // Never restore a previous scroll position: the site opens on the hero
+    try {
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     } catch (e) {}
   </script>
 </head>
