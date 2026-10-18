@@ -24,7 +24,7 @@ export const AboutSection = () => {
                         initial={{ opacity: 0, x: -12 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="justify-self-center md:justify-self-start md:sticky md:top-24"
+                        className="hidden md:block justify-self-center md:justify-self-start md:sticky md:top-24"
                     >
                         <div className="w-40 h-40 md:w-52 md:h-52 rounded-2xl overflow-hidden ring-1 ring-line">
                             <img src={profileImg} alt="Jorge Luis Herrera" className="w-full h-full object-cover" loading="lazy" />

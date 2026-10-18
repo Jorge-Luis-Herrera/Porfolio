@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cover Letter - Jorge Luis Herrera</title>
+    <title>Carta de presentación — Jorge Luis Herrera</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@300;600&family=Fira+Code:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@300;500;600&family=Fira+Code:wght@400;500&display=swap"
         rel="stylesheet">
     <style>
         :root {
@@ -15,25 +15,23 @@
             --accent: #fbbf24;
             --text-main: #c9d1d9;
             --text-muted: #8b949e;
+            --heading: #ffffff;
             --border: #30363d;
         }
 
         @media print {
-            body {
-                background: white !important;
-                color: black !important;
+            :root {
+                --primary: #ffffff;
+                --secondary: #ffffff;
+                --accent: #8a6d00;
+                --text-main: #000000;
+                --text-muted: #555555;
+                --heading: #000000;
+                --border: #dddddd;
             }
 
             .no-print {
-                display: none;
-            }
-
-            :root {
-                --primary: #ffffff;
-                --text-main: #000000;
-                --text-muted: #555555;
-                --border: #dddddd;
-                --accent: #b8860b;
+                display: none !important;
             }
         }
 
@@ -47,103 +45,200 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--primary);
             color: var(--text-main);
-            line-height: 1.8;
+            line-height: 1.75;
             padding: clamp(16px, 5vw, 60px) clamp(16px, 4vw, 40px);
             -webkit-text-size-adjust: 100%;
             overflow-wrap: anywhere;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 820px;
             margin: 0 auto;
             background: var(--secondary);
-            padding: clamp(20px, 6vw, 60px);
+            padding: clamp(20px, 6vw, 56px);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 10px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            animation: letter-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         @media print {
             .container {
                 box-shadow: none;
                 border: none;
+                border-radius: 0;
                 padding: 0;
             }
         }
 
+        /* ---------- Letterhead ---------- */
         header {
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 30px;
-            margin-bottom: 40px;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: flex-start;
+            gap: 18px 28px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 26px;
+            margin-bottom: 32px;
         }
 
         .header-main h1 {
             font-family: 'Outfit', sans-serif;
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4.5vw, 2rem);
             font-weight: 600;
-            color: white;
-            margin-bottom: 5px;
+            line-height: 1.15;
+            color: var(--heading);
+            margin-bottom: 6px;
         }
 
-        .header-main p {
+        .header-main .role {
             font-family: 'Fira Code', monospace;
             color: var(--accent);
             text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
         }
 
         .info {
-            font-size: 0.85rem;
+            font-style: normal;
+            font-size: 0.82rem;
             color: var(--text-muted);
             text-align: right;
+            line-height: 1.7;
         }
 
+        .info a {
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .info a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* ---------- Body ---------- */
         .date {
             font-family: 'Fira Code', monospace;
-            font-size: 0.8rem;
-            margin-bottom: 30px;
+            font-size: 0.78rem;
+            margin-bottom: 26px;
             color: var(--accent);
+            letter-spacing: 0.04em;
         }
 
         .recipient {
-            margin-bottom: 40px;
+            margin-bottom: 26px;
         }
 
         .recipient p {
             font-weight: 600;
-            color: white;
+            color: var(--heading);
         }
 
         .content p {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             text-align: justify;
         }
 
+        .content strong {
+            color: var(--heading);
+            font-weight: 600;
+        }
+
+        .lead {
+            font-size: 1.02rem;
+        }
+
+        .highlights {
+            list-style: none;
+            margin: 0 0 18px;
+            padding: 0 0 0 2px;
+        }
+
+        .highlights li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 9px;
+            text-align: left;
+        }
+
+        .highlights li::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 0.62em;
+            width: 7px;
+            height: 7px;
+            border-radius: 2px;
+            background: var(--accent);
+            opacity: 0.85;
+        }
+
+        .highlights code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.86em;
+            color: var(--accent);
+        }
+
+        /* ---------- Signature ---------- */
         .signature {
-            margin-top: 50px;
+            margin-top: 40px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
         }
 
-        .signature p {
+        .signature .closing {
+            margin-bottom: 14px;
+        }
+
+        .signature .name {
             font-family: 'Outfit', sans-serif;
-            font-style: italic;
-            font-size: 1.2rem;
-            color: white;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--heading);
         }
 
+        .signature .position {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .signature .contact {
+            margin-top: 12px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .signature .contact a {
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .signature .contact a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* ---------- Controls ---------- */
         .btn-print {
             position: fixed;
             top: 20px;
             right: 20px;
+            z-index: 10;
             background: var(--accent);
-            color: #000;
+            color: #0d1117;
             border: none;
             padding: 10px 20px;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
+            font-family: 'Inter', sans-serif;
             font-weight: 700;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             text-transform: uppercase;
@@ -151,32 +246,113 @@
             letter-spacing: 1px;
         }
 
-        .editable:hover {
-            outline: 1px dashed var(--accent);
-            cursor: text;
+        .btn-print:hover {
+            filter: brightness(1.08);
         }
 
-        /* --- Responsive: mobile phones --- */
-        @media (max-width: 640px) {
-            body {
-                padding: 16px;
+        /* ---------- Motion ---------- */
+        @keyframes letter-in {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
             }
 
-            .container {
-                padding: 24px 20px;
-                border-radius: 10px;
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .content>*,
+        .signature {
+            animation: letter-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .content>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .content>*:nth-child(2) {
+            animation-delay: 0.16s;
+        }
+
+        .content>*:nth-child(3) {
+            animation-delay: 0.22s;
+        }
+
+        .content>*:nth-child(4) {
+            animation-delay: 0.28s;
+        }
+
+        .content>*:nth-child(5) {
+            animation-delay: 0.34s;
+        }
+
+        .content>*:nth-child(6) {
+            animation-delay: 0.4s;
+        }
+
+        .content>*:nth-child(7) {
+            animation-delay: 0.46s;
+        }
+
+        .signature {
+            animation-delay: 0.52s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        @media print {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+            }
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 700px) {
+            header {
+                flex-direction: column;
             }
 
-            h1 {
-                font-size: clamp(1.5rem, 7vw, 2rem);
+            .info {
+                text-align: left;
+            }
+
+            .content p {
+                text-align: left;
             }
 
             .btn-print {
                 position: static;
                 display: block;
                 width: 100%;
-                margin-bottom: 20px;
+                margin-bottom: 18px;
             }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 14px;
+            }
+
+            .container {
+                padding: 22px 18px;
+            }
+        }
+
+        @page {
+            margin: 14mm;
         }
     </style>
 </head>
@@ -185,71 +361,88 @@
     <button class="btn-print no-print" onclick="window.print()">Imprimir PDF / Print PDF</button>
 
     <div class="container">
+        <header>
+            <div class="header-main">
+                <h1>Jorge Luis Herrera Cecilia</h1>
+                <p class="role">Desarrollador Full-Stack · CTO en CubiTech</p>
+            </div>
+            <address class="info">
+                <a href="mailto:herreraceciliajorgeluis@gmail.com">herreraceciliajorgeluis@gmail.com</a><br>
+                <a href="https://wa.me/5350722776">+53 5 072 2776</a> ·
+                <a href="https://t.me/Jorge_Lhc">Telegram @Jorge_Lhc</a><br>
+                La Habana, Cuba · Disponible en remoto<br>
+                <a href="https://www.linkedin.com/in/jorge-luis-herrera-cecilia-6a9031377/">LinkedIn</a> ·
+                <a href="https://github.com/Jorge-Luis-Herrera">GitHub</a> ·
+                <a href="https://jorge-luis-herrera.github.io/Porfolio/">Portafolio</a>
+            </address>
+        </header>
+
         <div class="date" id="currentDate"></div>
 
         <div class="recipient">
-            <p>A quien pueda interesarle...</p>
+            <p>A quien corresponda:</p>
         </div>
 
         <div class="content">
-            <p>Estimado Sr/Sra,</p>
+            <p class="lead">Me dirijo a ustedes para presentar mi candidatura a un puesto de desarrollo de software
+                (full-stack, backend o automatización). Soy desarrollador full-stack, dirijo la tecnología en CubiTech y
+                trabajo como freelance para negocios que necesitan software funcionando, no prototipos.</p>
 
-            <p> Dentro de un basto mercado ,falto de personas con la vividez necesaria para marcar una
-                diferencia pr'actica empresarial dentro de un mundo donde ,a simple vista ,parece imposible ganar
-                una pelea entre potencias ya bien remarcadas . No pierdo la esperanza de ser una de esas personas
-                que logre lo imposible ,como Junior m'as al fin ,no pierdo el sue;o de poder cambiar lo inevitable.
+            <p>Mi trabajo se mide en sistemas que están hoy en producción y en manos de clientes reales. Estos son
+                algunos:</p>
 
+            <ul class="highlights">
+                <li><strong>Pizzería Los Herrera</strong> — sistema de ventas para una pizzería: menú con carrito
+                    persistente, pedidos con ubicación GPS desde el móvil del cliente, panel de administración
+                    protegido por token y generación automática del mensaje de WhatsApp del pedido para el local.
+                    Backend en <code>Rust (Axum + SeaORM)</code> sobre SQLite, contenerizado y desplegado en Azure.</li>
+                <li><strong>Jenny Clothing (Cloth-Sell)</strong> — comercio electrónico de ropa: catálogo público con
+                    variantes de talla y color, control de stock transaccional para evitar la sobreventa, compra sin
+                    registro y panel administrativo protegido.</li>
+                <li><strong>CuteSell</strong> y <strong>D'Pavel</strong> — aplicaciones web full-stack desplegadas y en
+                    uso, con enlace público verificable.</li>
+            </ul>
+
+            <p>Trabajo de extremo a extremo: modelo de datos, API, interfaz, despliegue y automatización. Me muevo con
+                comodidad entre <code>Rust</code>, <code>TypeScript/React</code>, <code>Node.js</code>,
+                <code>C#/.NET</code> y <code>Python</code>, y elijo la herramienta que resuelve el problema sin
+                sobreingeniería. Cuido dos cosas por encima del resto: que el código se pueda mantener y que lo que
+                entrego funcione el primer día en manos de quien lo usa.</p>
+
+            <p>Mi formación acompaña esa práctica. Cursando Ciencias de la Computación en la Facultad de Matemática y
+                Computación (MatCom) de la Universidad de La Habana, estudio algoritmos, estructuras de datos, bases de
+                datos y optimización, y aplico esa base en proyectos publicados en GitHub. Antes de eso aprendí con lo
+                que tenía a mano: poca conexión y muchos libros. De ahí me queda algo que valoro más que cualquier
+                curso, la costumbre de resolver problemas sin excusas. No lo menciono por dramatismo, sino porque es
+                exactamente la actitud con la que trabajo cuando un proyecto se complica.</p>
+
+            <p>Busco un equipo donde pueda aportar desde el primer día y seguir creciendo junto a personas con más
+                experiencia que yo. Estoy disponible para trabajo en remoto, a tiempo completo o por proyecto, y puedo
+                incorporarme de inmediato.</p>
+
+            <p>Gracias por su tiempo y por considerar mi candidatura. Quedo a su disposición para una conversación, para
+                ampliar cualquier punto o para mostrar el código de cualquiera de los sistemas mencionados.</p>
+        </div>
+
+        <div class="signature">
+            <p class="closing">Atentamente,</p>
+            <p class="name">Jorge Luis Herrera Cecilia</p>
+            <p class="position">Desarrollador Full-Stack · CTO en CubiTech</p>
+            <p class="contact">
+                <a href="mailto:herreraceciliajorgeluis@gmail.com">herreraceciliajorgeluis@gmail.com</a> ·
+                +53 5 072 2776 · <a href="https://t.me/Jorge_Lhc">@Jorge_Lhc</a>
             </p>
-
-            <p>Podría hablar de tecnicismos; es lo que se suele hacer, e incluso puede que sea lo correcto. Sin embargo,
-                pasar desapercibido por el algoritmo que alguien diseñó para detectar "talento" es el destino más
-                probable. Por eso, si estás leyendo esto, es porque, al igual que yo, buscas algo diferente a lo
-                habitual. Si ese es el caso, te envío un saludo cordial; es un gusto conocerte.</p>
-
-            <p>¿Hablar un poco de mí? Por supuesto. Podría pasar horas frente a mi laptop escribiendo código Markdown o
-                HTML/CSS para que todo luzca impecable y presentable, pero sería aburrido. Prefiero contarte una pequeña
-                historia; quizás logres identificarte con ella.</p>
-
-            <p>En la cruda realidad de una sociedad fracturada, nace un chico sencillo con muy poco a su favor. El
-                salario apenas alcanzaba para llegar a fin de mes y la velocidad de internet era casi inexistente. Ese
-                chico se armó una PC con las pocas piezas que pudo reunir: una pantalla "inventada", un CPU lento y
-                apenas 2GB de RAM. Windows nunca fue una opción; Ubuntu fue, desde pequeño, su salvación para poder
-                "correr rápido las cosas".</p>
-
-            <p>Ese chico se interesó por las Ciencias de la Computación. Comprendió que el futuro estaba en lo que quiso
-                hacer toda su vida: programar. Pero no solo programar por oficio, sino hacer Ciencia. Quería cumplir los
-                sueños que alguna vez planteó dentro de los muchos libros que su joven mente devoró en sus breves ratos
-                libres.</p>
-
-            <p>Vivió bajo el rigor de apagones de casi 20 horas sin poder "tirar una línea de código". Obligado a
-                fortalecer las bases de sus conocimientos, no tuvo más remedio que aprender de los libros, de los
-                mejores y "a la antigua". En esas escasas 4 horas de electricidad, luchaba dentro del enjambre de
-                bestias que llamamos mercado para poder subsistir. Así pasaron los años —tres, para ser exactos—. Ya
-                casi termina su primera meta: graduarse, aun a sabiendas de que un título poco garantiza en este
-                mercado. Pero lo hace con la seguridad de que si lo logró en los peores momentos, lograrlo ahora es más
-                que posible. Lograr ese sueño imposible dando ese primer paso de enfrentarse a una
-                competencia que antes parecía despiadada,ahora,solo un juego de niños.</p>
-
-            <p>Dicho esto, gracias por tu atención. Si yo puedo estar aquí hoy presentándome ante Uds,no te
-                limites a leer: persigue tus metas con la misma tenacidad que ese chico que vino de la nada.</p>
-
-            <p>Me presento nuevamente: mi nombre es Jorge Luis y aspiro a convertirme en uno de los revolucionarios
-                digitales más grandes de esta era. Si has llegado hasta aquí, es porque buscas algo más que un simple
-                "relleno" para tus filas.</p>
-
-            <p>Espero tu respuesta...</p>
-            <p><strong>herreraceciliajorgeluis@gmail.com</strong></p>
         </div>
     </div>
 
     <script>
-        function setFormattedDate() {
+        (function setFormattedDate() {
             const dateElement = document.getElementById('currentDate');
+            if (!dateElement) return;
             const now = new Date();
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            dateElement.innerText = now.toLocaleDateString('es-ES', options).toUpperCase();
-        }
-        setFormattedDate();
+            dateElement.textContent = now.toLocaleDateString('es-ES', options).toUpperCase();
+        })();
     </script>
 </body>
 
