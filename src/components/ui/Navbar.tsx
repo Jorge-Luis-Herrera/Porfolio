@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon, Globe, Github, Linkedin, Mail } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTheme } from '../../context/ThemeContext';
+import { Signature } from './Signature';
 
 const SECTIONS = ['home', 'projects', 'skills', 'about', 'contact'] as const;
 
@@ -42,8 +43,8 @@ export const Navbar = () => {
                 }`}
             >
                 <div className="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between">
-                    <a href="#home" className="font-display font-bold text-lg text-ink">
-                        Jorge<span className="text-accent">.</span>Herrera
+                    <a href="#home" className="shrink-0" aria-label={t('nav.home')}>
+                        <Signature />
                     </a>
 
                     <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
@@ -105,9 +106,7 @@ export const Navbar = () => {
                             aria-label="Mobile navigation"
                         >
                             <div className="flex items-center justify-between mb-10">
-                                <span className="font-display font-bold text-ink">
-                                    Jorge<span className="text-accent">.</span>Herrera
-                                </span>
+                                <Signature />
                                 <button
                                     onClick={() => setOpen(false)}
                                     aria-label={t('nav.close')}

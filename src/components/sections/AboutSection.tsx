@@ -4,8 +4,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import profileImg from '../../assets/profile.jpg';
 
 export const AboutSection = () => {
-    const { t, language } = useLanguage();
-    const cvHref = `${import.meta.env.BASE_URL}${language === 'es' ? 'cv.html' : 'cv-en.html'}`;
+    const { t } = useLanguage();
 
     const softSkills = [
         { label: t('about.soft.leadership'), icon: Trophy },
@@ -58,12 +57,6 @@ export const AboutSection = () => {
                         </ul>
 
                         <div className="mt-8 flex flex-wrap gap-3">
-                            <a
-                                href={cvHref}
-                                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-line bg-surface text-sm font-medium text-ink hover:border-accent/40 hover:text-accent transition-colors"
-                            >
-                                {t('hero.cta.cv')}
-                            </a>
                             <a
                                 href="#contact"
                                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-strong transition-colors"

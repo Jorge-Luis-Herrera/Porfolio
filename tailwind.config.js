@@ -21,6 +21,7 @@ export default {
         display: ["'Space Grotesk'", "sans-serif"],
         sans: ["Inter", "system-ui", "sans-serif"],
         mono: ["'JetBrains Mono'", "ui-monospace", "monospace"],
+        signature: ["'Great Vibes'", "cursive"],
       },
     },
   },
