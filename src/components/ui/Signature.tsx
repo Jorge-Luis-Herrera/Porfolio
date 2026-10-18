@@ -11,7 +11,6 @@ export const Signature = ({ className = '' }: { className?: string }) => {
         >
             <span className="font-signature text-[1.35rem] sm:text-[1.6rem] leading-[1.35] text-ink whitespace-nowrap">
                 Jorge Luis Herrera
-                <span className="text-accent"> C.</span>
             </span>
             <svg
                 viewBox="0 0 220 12"
