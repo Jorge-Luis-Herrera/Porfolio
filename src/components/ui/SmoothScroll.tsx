@@ -16,7 +16,8 @@ export const SmoothScroll = () => {
 
         const lenis = new Lenis({
             duration: 1.05,
-            anchors: true,
+            // Anchor links stop 80px earlier so the fixed header never covers them
+            anchors: { offset: -80 },
             smoothWheel: true,
         });
         registerLenis(lenis);
