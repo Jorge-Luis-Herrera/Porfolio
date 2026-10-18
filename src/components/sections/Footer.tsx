@@ -30,8 +30,8 @@ export const Footer = () => {
 
     const contact = [
         {
-            label: 'Cubit Technologies · cubit-tech.com',
-            href: 'https://cubit-tech.com',
+            label: 'CubiTech · cubitechportfolio.vercel.app',
+            href: 'https://cubitechportfolio.vercel.app/',
             icon: Building2,
             external: true,
         },
@@ -70,6 +70,7 @@ export const Footer = () => {
     const resources = [
         { label: t('footer.link.cv'), href: cvHref, icon: FileText, external: true },
         { label: t('footer.link.cover'), href: coverHref, icon: ScrollText, external: true },
+        { label: 'CubiTech · GitHub', href: 'https://github.com/CuBit-Repository', icon: Building2, external: true },
         { label: t('footer.link.repos'), href: 'https://github.com/Jorge-Luis-Herrera?tab=repositories', icon: Github, external: true },
     ];
 

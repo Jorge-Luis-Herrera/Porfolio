@@ -22,7 +22,7 @@ export const MainProjects = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.08 }}
-                            className="card overflow-hidden flex flex-col"
+                            className="card border-animated overflow-hidden flex flex-col"
                         >
                             <div className="h-1.5 bg-gradient-to-r from-accent to-accent/30" aria-hidden="true" />
 

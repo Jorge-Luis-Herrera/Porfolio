@@ -62,8 +62,8 @@ export const ProjectsSection = () => {
                                 initial={{ opacity: 0, y: 12 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.97 }}
-                                transition={{ duration: 0.25 }}
-                                className="card p-5 sm:p-6 flex flex-col"
+                                transition={{ duration: 0.3 }}
+                                className="card border-animated p-5 sm:p-6 flex flex-col"
                             >
                                 <div className="flex items-start justify-between gap-3">
                                     <h3 className="font-display font-medium text-lg text-ink">
