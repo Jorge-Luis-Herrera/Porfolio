@@ -10,29 +10,32 @@ import { ProjectsSection } from './components/sections/ProjectsSection'
 import { SkillsSection } from './components/sections/SkillsSection'
 import { AboutSection } from './components/sections/AboutSection'
 import { Footer } from './components/sections/Footer'
+import { ProjectModalProvider } from './context/ProjectModalContext'
 
 function App() {
   return (
-    <div className="relative min-h-screen bg-base text-ink">
-      <ScrollProgress />
-      <div className="grid-bg pointer-events-none fixed inset-0 z-0" aria-hidden="true" />
-      <Spotlight />
+    <ProjectModalProvider>
+      <div className="relative min-h-screen bg-base text-ink">
+        <ScrollProgress />
+        <div className="grid-bg pointer-events-none fixed inset-0 z-0" aria-hidden="true" />
+        <Spotlight />
 
-      <div className="relative z-10">
-        <Navbar />
-        <main>
-          <Hero />
-          <TechMarquee />
-          <MainProjects />
-          <Stats />
-          <Experience />
-          <ProjectsSection />
-          <SkillsSection />
-          <AboutSection />
-        </main>
-        <Footer />
+        <div className="relative z-10">
+          <Navbar />
+          <main>
+            <Hero />
+            <TechMarquee />
+            <MainProjects />
+            <Stats />
+            <Experience />
+            <ProjectsSection />
+            <SkillsSection />
+            <AboutSection />
+          </main>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </ProjectModalProvider>
   )
 }
 

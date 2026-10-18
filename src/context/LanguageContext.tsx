@@ -46,6 +46,16 @@ const translations = {
         'projects.viewRepo': 'Repositorio',
         'projects.viewLive': 'Ver en vivo',
         'projects.empty': 'No hay proyectos en esta categoría aún.',
+        'projects.viewDetails': 'Ver detalles',
+
+        'modal.close': 'Cerrar',
+        'modal.featured': 'Destacado',
+        'modal.highlights': 'Puntos clave',
+        'modal.stack': 'Stack técnico',
+        'modal.scope.featured': 'Aplicación web full-stack',
+        'modal.scope.backend': 'Backend y sistemas',
+        'modal.scope.automation': 'IA y automatización',
+        'modal.scope.academic': 'Fundamentos académicos',
 
         'skills.title': 'Habilidades',
         'skills.subtitle': 'Tecnologías que uso en proyectos reales',
@@ -86,7 +96,10 @@ const translations = {
         'stats.tech': 'Tecnologías en uso',
 
         'experience.title': 'Experiencia',
-        'experience.subtitle': 'Roles, especialidades y trabajo en producción',
+        'experience.subtitle': 'Trayectoria profesional y formación universitaria',
+        'experience.linkedin': 'Ver perfil completo en LinkedIn',
+        'experience.group.work': 'Experiencia profesional',
+        'experience.group.education': 'Formación académica',
         'experience.current': 'Actual',
         'experience.cto.period': 'Actual',
         'experience.cto.title': 'CTO',
@@ -97,6 +110,12 @@ const translations = {
         'experience.production.period': 'En producción',
         'experience.production.title': 'Sistemas desplegados',
         'experience.production.desc': 'Mantengo aplicaciones vivas en Azure App Service con contenedores Docker, integración continua en GitHub Actions y monitoreo de salud de cada servicio.',
+        'experience.education.period': 'MatCom · Universidad de La Habana',
+        'experience.education.title': 'Ciencias de la Computación',
+        'experience.education.desc': 'Cursé Ciencias de la Computación en la Facultad de Matemática y Computación (MatCom), la facultad de referencia de la Universidad de La Habana —la universidad más antigua de Cuba (1728)— para Ciencias de la Computación, Matemática y Ciencia de Datos. Formación en algoritmos, estructuras de datos, matemática discreta, optimización, bases de datos y computación científica, aplicada en proyectos publicados en GitHub.',
+        'experience.courses.period': 'Proyectos académicos',
+        'experience.courses.title': 'Ejercicios de carrera aplicados',
+        'experience.courses.desc': 'Repositorios de estructuras de datos, matemática discreta, optimización y bases de datos que escribí durante la carrera: la base teórica que sostiene mi trabajo de ingeniería.',
     },
     en: {
         'nav.home': 'Home',
@@ -135,6 +154,16 @@ const translations = {
         'projects.viewRepo': 'Repository',
         'projects.viewLive': 'Live demo',
         'projects.empty': 'No projects in this category yet.',
+        'projects.viewDetails': 'View details',
+
+        'modal.close': 'Close',
+        'modal.featured': 'Featured',
+        'modal.highlights': 'Key points',
+        'modal.stack': 'Tech stack',
+        'modal.scope.featured': 'Full-stack web application',
+        'modal.scope.backend': 'Backend and systems',
+        'modal.scope.automation': 'AI and automation',
+        'modal.scope.academic': 'Computer science foundations',
 
         'skills.title': 'Skills',
         'skills.subtitle': 'Technologies I actually use in shipped projects',
@@ -175,7 +204,10 @@ const translations = {
         'stats.tech': 'Technologies in use',
 
         'experience.title': 'Experience',
-        'experience.subtitle': 'Roles, specialities, and production work',
+        'experience.subtitle': 'Professional career and university education',
+        'experience.linkedin': 'View full profile on LinkedIn',
+        'experience.group.work': 'Professional experience',
+        'experience.group.education': 'Education',
         'experience.current': 'Current',
         'experience.cto.period': 'Current',
         'experience.cto.title': 'CTO',
@@ -186,6 +218,12 @@ const translations = {
         'experience.production.period': 'In production',
         'experience.production.title': 'Deployed systems',
         'experience.production.desc': 'I keep applications running on Azure App Service with Docker containers, CI on GitHub Actions, and health monitoring for every service.',
+        'experience.education.period': 'MatCom · University of Havana',
+        'experience.education.title': 'Computer Science',
+        'experience.education.desc': 'I studied Computer Science at the Faculty of Mathematics and Computer Science (MatCom), the reference faculty of the University of Havana — Cuba’s oldest university (1728) — for Computer Science, Mathematics, and Data Science. Training in algorithms, data structures, discrete mathematics, optimization, databases, and scientific computing, applied in projects published on GitHub.',
+        'experience.courses.period': 'Academic',
+        'experience.courses.title': 'Applied coursework',
+        'experience.courses.desc': 'Repositories on data structures, discrete mathematics, optimization, and databases that I wrote during my degree: the theoretical foundation behind my engineering work.',
     }
 };
 

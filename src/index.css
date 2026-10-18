@@ -164,6 +164,42 @@
   animation: scroll-hint 2s ease-in-out infinite;
 }
 
+/* Letter-by-letter reveal (project detail modal) */
+@keyframes letter-in {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.letter {
+  display: inline-block;
+  opacity: 0;
+  white-space: pre;
+  animation: letter-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Custom scrollbar for the modal */
+.modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent) 45%, transparent) transparent;
+}
+
+.modal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: 9999px;
+}
+
 /* Accessibility: honour reduced-motion preferences everywhere */
 @media (prefers-reduced-motion: reduce) {
   html {

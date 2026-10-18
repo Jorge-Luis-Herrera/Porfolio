@@ -5,6 +5,8 @@ export interface Project {
     category: ProjectCategory;
     title: string;
     description: { es: string; en: string };
+    /** Extra points shown in the project detail dialog. */
+    highlights?: { es: string[]; en: string[] };
     tech: string[];
     repo: string;
     liveLink?: string;
@@ -25,6 +27,20 @@ export const projects: Project[] = [
             es: 'Sistema de ventas para pizzería en producción: menú con carrito persistente, pedidos con ubicación GPS, panel de administración protegido por token y generación automática del mensaje de WhatsApp para el local.',
             en: 'Production sales system for a pizzeria: menu with persistent cart, orders with GPS location, token-protected admin panel, and automatic WhatsApp message generation for the store.',
         },
+        highlights: {
+            es: [
+                'Carrito persistente y pedidos con ubicación GPS desde el móvil del cliente.',
+                'Panel de administración protegido por token para gestionar menú y pedidos.',
+                'Mensaje de WhatsApp del pedido generado automáticamente para el local.',
+                'Desplegado en Azure App Service con Docker e integración continua.',
+            ],
+            en: [
+                'Persistent cart and orders with GPS location from the customer phone.',
+                'Token-protected admin panel to manage menu and orders.',
+                'Order summary automatically turned into a WhatsApp message for the store.',
+                'Deployed to Azure App Service with Docker and continuous integration.',
+            ],
+        },
         tech: ['Rust', 'Axum', 'SeaORM', 'SQLite', 'Docker', 'Azure'],
         repo: `${GH}/Pizzas-Los-Herrera`,
         liveLink: 'https://pizzas-los-herrera-web.azurewebsites.net/',
@@ -39,6 +55,20 @@ export const projects: Project[] = [
             es: 'E-commerce de ropa desplegado en producción: catálogo público, variantes de talla y color, control de stock transaccional, compra sin registro y panel administrativo protegido.',
             en: 'Clothing e-commerce deployed to production: public catalog, size and color variants, transactional stock control, guest checkout, and a protected admin panel.',
         },
+        highlights: {
+            es: [
+                'Catálogo público con variantes de talla y color por prenda.',
+                'Control de stock transaccional para evitar la sobreventa.',
+                'Compra sin registro y panel administrativo protegido.',
+                'Backend en Rust con Axum y SQLx sobre SQLite, publicado en Azure.',
+            ],
+            en: [
+                'Public catalog with size and color variants per garment.',
+                'Transactional stock control that prevents overselling.',
+                'Guest checkout plus a protected admin panel.',
+                'Rust backend with Axum and SQLx over SQLite, published on Azure.',
+            ],
+        },
         tech: ['Rust', 'Axum', 'SQLx', 'SQLite', 'React', 'TypeScript', 'Azure'],
         repo: `${GH}/Cloth-Sell`,
         liveLink: 'https://jenny-clothing-20261014.azurewebsites.net/',
@@ -52,6 +82,18 @@ export const projects: Project[] = [
         description: {
             es: 'Tienda online de peluches en producción: catálogo inmersivo, búsqueda global, panel de administración y flujo de venta por WhatsApp.',
             en: 'Production plush store: immersive catalog, global search, admin dashboard, and WhatsApp sales flow.',
+        },
+        highlights: {
+            es: [
+                'Catálogo inmersivo con búsqueda global de productos.',
+                'Flujo de venta por WhatsApp y panel de administración.',
+                'Frontend en Next.js y backend en NestJS, desplegado en Azure.',
+            ],
+            en: [
+                'Immersive catalog with global product search.',
+                'WhatsApp sales flow and an admin dashboard.',
+                'Next.js frontend and NestJS backend, deployed on Azure.',
+            ],
         },
         tech: ['Next.js', 'NestJS', 'TypeScript', 'Tailwind CSS', 'Azure'],
         repo: `${GH}/CuteSell`,
@@ -69,6 +111,16 @@ export const projects: Project[] = [
             es: 'Catálogo premium de belleza con panel de administración, inventario, subida de imágenes y pedidos por WhatsApp.',
             en: 'Premium beauty catalog with admin panel, inventory, image uploads, and WhatsApp ordering.',
         },
+        highlights: {
+            es: [
+                'Catálogo premium con panel de administración e inventario.',
+                'Subida de imágenes de producto y pedidos por WhatsApp.',
+            ],
+            en: [
+                'Premium catalog with admin panel and inventory.',
+                'Product image uploads and WhatsApp ordering.',
+            ],
+        },
         tech: ['React', 'NestJS', 'SQLite', 'Azure'],
         repo: `${GH}/enchanted-vanity`,
     },
@@ -79,6 +131,18 @@ export const projects: Project[] = [
         description: {
             es: 'Catálogo digital para cafetería con navegación visual y flujo de compra orientado a retail.',
             en: 'Digital catalog for a cafe with visual browsing and a retail-oriented purchase flow.',
+        },
+        highlights: {
+            es: [
+                'Navegación visual del catálogo orientada a retail.',
+                'Flujo de compra simple, sin cuentas para el cliente.',
+                'Desplegado en Azure App Service.',
+            ],
+            en: [
+                'Retail-oriented visual catalog browsing.',
+                'Simple purchase flow that needs no customer account.',
+                'Deployed on Azure App Service.',
+            ],
         },
         tech: ['Vue', 'Node.js', 'PostgreSQL', 'Azure'],
         repo: `${GH}/DPavel`,
@@ -162,6 +226,18 @@ export const projects: Project[] = [
             es: 'Agente de escritorio 100% local para Linux Wayland con voz, visión y ejecución modular.',
             en: '100% local desktop agent for Linux Wayland with voice, vision, and modular execution.',
         },
+        highlights: {
+            es: [
+                'Funciona 100% en local: no depende de servicios en la nube.',
+                'Voz y visión integradas en un escritorio Linux Wayland.',
+                'Arquitectura modular, con capacidades que se activan por separado.',
+            ],
+            en: [
+                'Runs 100% locally: no cloud service required.',
+                'Voice and vision integrated into a Linux Wayland desktop.',
+                'Modular architecture with capabilities enabled independently.',
+            ],
+        },
         tech: ['Python', 'Wayland', 'Moonshine', 'Piper'],
         repo: `${GH}/CecilOs`,
         starred: true,
@@ -173,6 +249,16 @@ export const projects: Project[] = [
         description: {
             es: 'Scraper para recopilar datos académicos dispersos y convertirlos en información estructurada.',
             en: 'Scraper for collecting scattered academic data and turning it into structured information.',
+        },
+        highlights: {
+            es: [
+                'Recolección automatizada de datos académicos dispersos.',
+                'Normalización de los resultados en información estructurada para análisis.',
+            ],
+            en: [
+                'Automated collection of scattered academic data.',
+                'Results normalized into structured information ready for analysis.',
+            ],
         },
         tech: ['Selenium', 'BeautifulSoup', 'Python'],
         repo: `${GH}/Cuban-Tesis-Scrapper`,

@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Wifi } from 'lucide-react';
+import { Github, ExternalLink, Wifi, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import { useProjectModal } from '../../context/ProjectModalContext';
 import { mainProjects } from '../../data/projects';
 
 export const MainProjects = () => {
     const { t, language } = useLanguage();
+    const { openProject } = useProjectModal();
 
     return (
         <section id="projects" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
@@ -22,7 +24,17 @@ export const MainProjects = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.08 }}
-                            className="card border-animated overflow-hidden flex flex-col"
+                            role="button"
+                            tabIndex={0}
+                            aria-label={`${p.title} — ${t('projects.viewDetails')}`}
+                            onClick={() => openProject(p)}
+                            onKeyDown={(event) => {
+                                if (event.key === 'Enter' || event.key === ' ') {
+                                    event.preventDefault();
+                                    openProject(p);
+                                }
+                            }}
+                            className="card border-animated group overflow-hidden flex flex-col cursor-pointer"
                         >
                             <div className="h-1.5 bg-gradient-to-r from-accent to-accent/30" aria-hidden="true" />
 
@@ -59,6 +71,7 @@ export const MainProjects = () => {
                                             href={p.liveLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={(event) => event.stopPropagation()}
                                             className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-accent text-white text-xs font-medium hover:bg-accent-strong transition-colors"
                                         >
                                             <ExternalLink className="w-3.5 h-3.5" />
@@ -69,11 +82,16 @@ export const MainProjects = () => {
                                         href={p.repo}
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        onClick={(event) => event.stopPropagation()}
                                         className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-line bg-surface text-xs font-medium text-muted hover:text-accent hover:border-accent/40 transition-colors"
                                     >
                                         <Github className="w-3.5 h-3.5" />
                                         {t('projects.viewRepo')}
                                     </a>
+                                    <span className="ml-auto inline-flex items-center gap-1 text-xs font-medium text-accent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity">
+                                        {t('projects.viewDetails')}
+                                        <ArrowRight className="w-3.5 h-3.5" />
+                                    </span>
                                 </div>
                             </div>
                         </motion.li>

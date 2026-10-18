@@ -1,13 +1,15 @@
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, Star } from 'lucide-react';
+import { Github, ExternalLink, Star, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import { useProjectModal } from '../../context/ProjectModalContext';
 import { otherProjects, categoryOrder, type ProjectCategory } from '../../data/projects';
 
 type Filter = 'all' | ProjectCategory;
 
 export const ProjectsSection = () => {
     const { t, language } = useLanguage();
+    const { openProject } = useProjectModal();
     const [filter, setFilter] = useState<Filter>('all');
 
     const filters: { id: Filter; label: string }[] = useMemo(
@@ -63,7 +65,17 @@ export const ProjectsSection = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.97 }}
                                 transition={{ duration: 0.3 }}
-                                className="card border-animated p-5 sm:p-6 flex flex-col"
+                                role="button"
+                                tabIndex={0}
+                                aria-label={`${p.title} — ${t('projects.viewDetails')}`}
+                                onClick={() => openProject(p)}
+                                onKeyDown={(event) => {
+                                    if (event.key === 'Enter' || event.key === ' ') {
+                                        event.preventDefault();
+                                        openProject(p);
+                                    }
+                                }}
+                                className="card border-animated group p-5 sm:p-6 flex flex-col cursor-pointer"
                             >
                                 <div className="flex items-start justify-between gap-3">
                                     <h3 className="font-display font-medium text-lg text-ink">
@@ -95,6 +107,7 @@ export const ProjectsSection = () => {
                                         href={p.repo}
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        onClick={(event) => event.stopPropagation()}
                                         className="inline-flex items-center gap-1.5 text-xs font-medium text-muted hover:text-accent transition-colors"
                                     >
                                         <Github className="w-4 h-4" />
@@ -105,12 +118,17 @@ export const ProjectsSection = () => {
                                             href={p.liveLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={(event) => event.stopPropagation()}
                                             className="inline-flex items-center gap-1.5 text-xs font-medium text-accent hover:text-accent-strong transition-colors"
                                         >
                                             <ExternalLink className="w-4 h-4" />
                                             {t('projects.viewLive')}
                                         </a>
                                     )}
+                                    <span className="ml-auto inline-flex items-center gap-1 text-xs font-medium text-accent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity">
+                                        {t('projects.viewDetails')}
+                                        <ArrowRight className="w-3.5 h-3.5" />
+                                    </span>
                                 </div>
                             </motion.li>
                         ))}
