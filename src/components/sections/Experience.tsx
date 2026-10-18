@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 import {
     Building2,
     Code2,
@@ -25,6 +26,30 @@ interface TimelineItem {
     links?: { label: string; href: string }[];
 }
 
+/**
+ * Accent beam that draws itself down the timeline as the column scrolls by,
+ * over the plain border of the list.
+ */
+const ScrollBeam = () => {
+    const ref = useRef<HTMLSpanElement>(null);
+    const reduceMotion = useReducedMotion();
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ['start 78%', 'end 55%'],
+    });
+    const scaleY = useSpring(scrollYProgress, { stiffness: 120, damping: 26, restDelta: 0.001 });
+
+    return (
+        <motion.span
+            ref={ref}
+            aria-hidden="true"
+            style={reduceMotion ? undefined : { scaleY }}
+            className="timeline-beam pointer-events-none absolute -left-px top-0 h-full w-px origin-top"
+        />
+    );
+};
+
+/** Work and education timeline with a scroll-drawn accent beam. */
 export const Experience = () => {
     const { t, language } = useLanguage();
 
@@ -132,6 +157,7 @@ export const Experience = () => {
                             />
 
                             <ol className="relative border-l border-line ml-3 sm:ml-4">
+                                <ScrollBeam />
                                 {group.items.map((item, i) => (
                                     <motion.li
                                         key={item.title}

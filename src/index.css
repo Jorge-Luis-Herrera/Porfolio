@@ -407,6 +407,106 @@ html.has-custom-cursor select {
   filter: drop-shadow(0 0 10px color-mix(in srgb, var(--accent) 35%, transparent));
 }
 
+/* ------------------------------------------------------------------ *
+ *  Split-flap digits (stats)
+ * ------------------------------------------------------------------ */
+.flip-window {
+  position: relative;
+  display: inline-block;
+  height: 1.15em;
+  overflow: hidden;
+  vertical-align: -0.15em;
+}
+
+/* The hairline seam that sells the mechanical flip-board look. */
+.flip-window::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: color-mix(in srgb, var(--ink) 16%, transparent);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.flip-strip {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+  transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flip-strip[data-run='true'] {
+  transform: translateY(calc(var(--digit, 0) * -1.15em));
+}
+
+.flip-cell {
+  display: block;
+  height: 1.15em;
+  line-height: 1.15;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Live gradient on the hero headline
+ * ------------------------------------------------------------------ */
+.text-gradient-live {
+  color: var(--accent);
+  background-image: linear-gradient(
+    100deg,
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 45%, #fff) 38%,
+    var(--accent) 64%,
+    color-mix(in srgb, var(--accent) 60%, #fff) 100%
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-sweep 7s ease-in-out infinite;
+}
+
+@keyframes gradient-sweep {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Floating project preview inside the explorer
+ * ------------------------------------------------------------------ */
+.peek-window {
+  animation: peek-in 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes peek-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Scroll-drawn timeline beam
+ * ------------------------------------------------------------------ */
+.timeline-beam {
+  background: linear-gradient(
+    to bottom,
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 65%, transparent) 55%,
+    transparent 100%
+  );
+}
+
 /* Accessibility: honour reduced-motion preferences everywhere */
 @media (prefers-reduced-motion: reduce) {
   html {

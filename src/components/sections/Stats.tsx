@@ -1,4 +1,4 @@
-import { CountUp } from '../ui/CountUp';
+import { FlipCounter } from '../ui/FlipCounter';
 import { Reveal } from '../ui/Reveal';
 import { useLanguage } from '../../context/LanguageContext';
 import { projects } from '../../data/projects';
@@ -24,10 +24,10 @@ export const Stats = () => {
                         <Reveal key={s.label} delay={i * 0.08} className="text-center lg:text-left">
                             <dt className="sr-only">{s.label}</dt>
                             <dd>
-                                <CountUp
+                                <FlipCounter
                                     to={s.value}
-                                    suffix={s.suffix}
-                                    className="font-display font-bold text-3xl sm:text-4xl text-ink tabular-nums"
+                                    delay={i * 0.12}
+                                    className="font-display font-bold text-3xl sm:text-4xl text-ink"
                                 />
                                 <span className="mt-2 block font-mono text-[11px] sm:text-xs uppercase tracking-wider text-muted">
                                     {s.label}

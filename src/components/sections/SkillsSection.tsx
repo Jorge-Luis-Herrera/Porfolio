@@ -3,6 +3,7 @@ import { Code2, Layout, Server, Wrench } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { BlurText } from '../ui/BlurText';
 import { ScrambleText } from '../ui/ScrambleText';
+import { TiltCard } from '../ui/TiltCard';
 
 export const SkillsSection = () => {
     const { t } = useLanguage();
@@ -40,8 +41,9 @@ export const SkillsSection = () => {
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
                     {groups.map((g, i) => (
-                        <motion.div
+                        <TiltCard
                             key={g.title}
+                            max={2.5}
                             initial={{ opacity: 0, y: 12 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -53,13 +55,24 @@ export const SkillsSection = () => {
                                 <ScrambleText as="h3" className="font-display text-sm font-medium text-ink" text={g.title} />
                             </div>
                             <ul className="flex flex-wrap gap-1.5">
-                                {g.items.map((item) => (
-                                    <li key={item} className="chip">
+                                {g.items.map((item, index) => (
+                                    <motion.li
+                                        key={item}
+                                        className="chip"
+                                        initial={{ opacity: 0, y: 6, scale: 0.96 }}
+                                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{
+                                            duration: 0.35,
+                                            delay: i * 0.05 + index * 0.03,
+                                            ease: [0.22, 1, 0.36, 1],
+                                        }}
+                                    >
                                         {item}
-                                    </li>
+                                    </motion.li>
                                 ))}
                             </ul>
-                        </motion.div>
+                        </TiltCard>
                     ))}
                 </div>
             </div>

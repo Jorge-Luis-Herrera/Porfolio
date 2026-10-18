@@ -7,6 +7,8 @@ interface MaskTextProps {
     /** Element used to render the text. Defaults to a span. */
     as?: ElementType;
     className?: string;
+    /** Extra classes for every word (e.g. a live gradient fill). */
+    wordClassName?: string;
     /** Seconds before the first word starts moving. */
     delay?: number;
     /** Seconds between words. */
@@ -23,6 +25,7 @@ export const MaskText = ({
     text,
     as: Tag = 'span',
     className,
+    wordClassName,
     delay = 0,
     stagger = 0.055,
     start = true,
@@ -40,7 +43,7 @@ export const MaskText = ({
                 <Fragment key={`${word}-${index}`}>
                     <span className="inline-block overflow-hidden pb-[0.14em] -mb-[0.14em] align-bottom">
                         <motion.span
-                            className="inline-block"
+                            className={`inline-block ${wordClassName ?? ''}`}
                             initial={{ y: '115%' }}
                             animate={{ y: start ? 0 : '115%' }}
                             transition={{

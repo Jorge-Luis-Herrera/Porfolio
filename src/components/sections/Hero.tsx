@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { ArrowDown, Download, Github, Linkedin, Send, MessageCircle, Mail, Building2, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { CUBITECH } from '../../data/tech';
@@ -23,6 +23,22 @@ export const Hero = () => {
     const portraitY = useTransform(scrollYProgress, [0, 1], [0, 110]);
     const fade = useTransform(scrollYProgress, [0, 0.75], [1, 0.15]);
 
+    // Portrait drifts a few pixels against the cursor (desktop, fine pointers).
+    const [finePointer] = useState(
+        () => typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches
+    );
+    const parallaxX = useSpring(0, { stiffness: 110, damping: 18, mass: 0.6 });
+    const parallaxY = useSpring(0, { stiffness: 110, damping: 18, mass: 0.6 });
+    const showParallax = finePointer && !reduceMotion;
+
+    const handleParallax = (event: React.PointerEvent<HTMLElement>) => {
+        if (!showParallax) return;
+        const offsetX = event.clientX / window.innerWidth - 0.5;
+        const offsetY = event.clientY / window.innerHeight - 0.5;
+        parallaxX.set(offsetX * 20);
+        parallaxY.set(offsetY * 20);
+    };
+
     const roles = [
         t('hero.role.fullstack'),
         t('hero.role.rust'),
@@ -44,12 +60,19 @@ export const Hero = () => {
         <section
             id="home"
             ref={sectionRef}
+            onPointerMove={handleParallax}
             className="relative min-h-[100svh] flex flex-col justify-center pt-24 pb-16"
         >
             <div className="mx-auto max-w-6xl px-4 sm:px-6 w-full">
                 <div className="grid md:grid-cols-[auto_1fr] items-center gap-10 md:gap-16">
                     <motion.div
-                        style={reduceMotion ? undefined : { y: portraitY }}
+                        style={
+                            reduceMotion
+                                ? undefined
+                                : showParallax
+                                  ? { y: portraitY, x: parallaxX }
+                                  : { y: portraitY }
+                        }
                         className="justify-self-center md:justify-self-start relative"
                     >
                         {/* Rotating conic aura */}
@@ -118,6 +141,7 @@ export const Hero = () => {
                                 text={t('hero.title.highlight')}
                                 delay={highlightDelay}
                                 className="text-accent"
+                                wordClassName="text-gradient-live"
                                 start={introReady}
                             />
                         </h1>
@@ -188,6 +212,7 @@ export const Hero = () => {
                                         target={href.startsWith('http') ? '_blank' : undefined}
                                         rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                                         aria-label={label}
+                                        data-cursor={t('cursor.open')}
                                         whileHover={{ y: -3, scale: 1.08 }}
                                         transition={{ duration: 0.15 }}
                                         className="p-2.5 rounded-lg text-muted hover:text-accent hover:bg-surface-2 transition-colors"

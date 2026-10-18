@@ -83,6 +83,12 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                     >
                         <div className="h-1.5 shrink-0 bg-gradient-to-r from-accent via-accent/70 to-accent/10" aria-hidden="true" />
 
+                        {/* Soft aura washing in from the top of the dialog */}
+                        <div
+                            aria-hidden="true"
+                            className="pointer-events-none absolute -top-28 left-1/2 h-56 w-[120%] -translate-x-1/2 rounded-[50%] bg-accent/15 blur-3xl"
+                        />
+
                         <button
                             type="button"
                             onClick={onClose}
@@ -154,7 +160,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                                             initial={{ opacity: 0, y: 6 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: 0.25 + index * 0.05, duration: 0.3 }}
-                                            className="chip"
+                                            className="chip border-animated"
                                         >
                                             {tech}
                                         </motion.li>
@@ -168,6 +174,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                                         href={project.liveLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        data-cursor={t('cursor.open')}
                                         className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-strong transition-colors"
                                     >
                                         <ExternalLink className="w-4 h-4" />
@@ -178,6 +185,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                                     href={project.repo}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    data-cursor={t('cursor.open')}
                                     className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-line bg-surface text-sm font-medium text-ink hover:text-accent hover:border-accent/40 transition-colors"
                                 >
                                     <Github className="w-4 h-4" />

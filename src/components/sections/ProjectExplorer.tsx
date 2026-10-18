@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import type { CSSProperties } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import type { CSSProperties, PointerEvent as ReactPointerEvent } from 'react';
+import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
 import {
     ArrowRight,
     Bot,
@@ -51,9 +51,11 @@ interface FileTileProps {
     project: Project;
     index: number;
     animate: boolean;
+    /** Tells the section which project the floating preview should show. */
+    onPeek: (project: Project | null) => void;
 }
 
-const FileTile = ({ project, index, animate }: FileTileProps) => {
+const FileTile = ({ project, index, animate, onPeek }: FileTileProps) => {
     const { t, language } = useLanguage();
     const { openProject } = useProjectModal();
 
@@ -61,10 +63,15 @@ const FileTile = ({ project, index, animate }: FileTileProps) => {
         <motion.button
             type="button"
             onClick={() => openProject(project)}
+            onPointerEnter={() => onPeek(project)}
+            onPointerLeave={() => onPeek(null)}
+            onFocus={() => onPeek(project)}
+            onBlur={() => onPeek(null)}
+            data-cursor={t('cursor.view')}
             initial={animate ? { opacity: 0, y: 10 } : false}
             animate={animate ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: 0.35, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
-            className="group flex w-full cursor-pointer items-start gap-3 rounded-lg border border-line bg-surface-2/40 p-3 text-left transition-colors hover:border-accent/40 hover:bg-surface-2"
+            className="border-animated group flex w-full cursor-pointer items-start gap-3 rounded-lg border border-line bg-surface-2/40 p-3 text-left transition-colors hover:border-accent/40 hover:bg-surface-2"
         >
             <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-md border border-line bg-surface text-accent">
                 <FileCode2 className="h-4 w-4" />
@@ -122,12 +129,30 @@ const FileTile = ({ project, index, animate }: FileTileProps) => {
  * every file opens the full project dialog.
  */
 export const ProjectExplorer = () => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const reduceMotion = useReducedMotion();
 
     const [openCategory, setOpenCategory] = useState<ProjectCategory | null>(null);
     const [openingCategory, setOpeningCategory] = useState<ProjectCategory | null>(null);
     const [page, setPage] = useState(0);
+
+    // Floating preview that trails the cursor while browsing files.
+    const [peek, setPeek] = useState<Project | null>(null);
+    const [peekSide, setPeekSide] = useState<'right' | 'left'>('right');
+    const [finePointer] = useState(
+        () => typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches
+    );
+    const peekX = useMotionValue(0);
+    const peekY = useMotionValue(0);
+    const followX = useSpring(peekX, { stiffness: 320, damping: 30, mass: 0.4 });
+    const followY = useSpring(peekY, { stiffness: 320, damping: 30, mass: 0.4 });
+
+    const handleSectionPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
+        if (!finePointer) return;
+        peekX.set(event.clientX);
+        peekY.set(event.clientY);
+        setPeekSide(event.clientX > window.innerWidth - 360 ? 'left' : 'right');
+    };
 
     const folders = useMemo(
         () =>
@@ -192,7 +217,11 @@ export const ProjectExplorer = () => {
     };
 
     return (
-        <section id="projects" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
+        <section
+            id="projects"
+            onPointerMove={handleSectionPointerMove}
+            className="scroll-mt-20 border-t border-line py-20 sm:py-28"
+        >
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
                 <header className="mb-8 sm:mb-10">
                     <BlurText as="h2" className="section-title" text={t('explorer.title')} />
@@ -417,6 +446,7 @@ export const ProjectExplorer = () => {
                                                                     project={project}
                                                                     index={index}
                                                                     animate={!reduceMotion}
+                                                                    onPeek={setPeek}
                                                                 />
                                                             </li>
                                                         ))}
@@ -476,6 +506,51 @@ export const ProjectExplorer = () => {
                     </TiltCard>
                 </motion.div>
             </div>
+
+            {/* Floating preview: shows the first highlight, which the file tile does not. */}
+            <AnimatePresence>
+                {peek && finePointer && !reduceMotion && (
+                    <motion.div
+                        key="project-peek"
+                        style={{ x: followX, y: followY }}
+                        initial={{ opacity: 0, scale: 0.94 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.96 }}
+                        transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                        className="pointer-events-none fixed left-0 top-0 z-[68] hidden sm:block"
+                    >
+                        <div
+                            className={`peek-window w-72 rounded-xl border border-line bg-surface/95 p-3.5 shadow-[0_28px_70px_-35px_rgba(15,23,42,0.7)] backdrop-blur-md ${
+                                peekSide === 'right'
+                                    ? 'translate-x-6 -translate-y-1/2'
+                                    : '-translate-x-[calc(100%+1.5rem)] -translate-y-1/2'
+                            }`}
+                        >
+                            <div className="flex items-center justify-between gap-2">
+                                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">
+                                    {t(`explorer.category.${peek.category}`)}
+                                </span>
+                                {peek.liveLink && (
+                                    <span className="inline-flex items-center gap-1 font-mono text-[10px] text-emerald-500">
+                                        <Wifi className="h-3 w-3" />
+                                        {t('projects.inProduction')}
+                                    </span>
+                                )}
+                            </div>
+
+                            <p className="mt-2 font-display text-sm text-ink">{peek.title}</p>
+
+                            <p className="mt-1.5 line-clamp-3 text-xs leading-relaxed text-muted">
+                                {peek.highlights?.[language]?.[0] ?? peek.description[language]}
+                            </p>
+
+                            <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+                                {t('explorer.detail')} →
+                            </p>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 };

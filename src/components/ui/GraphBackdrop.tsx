@@ -55,6 +55,9 @@ export const GraphBackdrop = ({ className }: GraphBackdropProps) => {
         let raf = 0;
         let visible = false;
         let previous = 0;
+        let lastScroll = window.scrollY;
+        /** Scroll energy injected into the nodes, so the graph reacts to the page. */
+        let impulse = 0;
         const pointer = { x: 0, y: 0, active: false };
 
         const readTheme = () => {
@@ -76,9 +79,16 @@ export const GraphBackdrop = ({ className }: GraphBackdropProps) => {
         };
 
         const step = (dt: number) => {
+            const energy = impulse;
+            impulse *= 1 - Math.min(1, 6 * dt);
+
             for (const node of nodes) {
                 node.x += node.vx * dt;
                 node.y += node.vy * dt;
+
+                // Scrolling pushes the whole network along with the page.
+                node.vy += energy * 150 * dt;
+                node.vx += energy * 26 * dt;
 
                 if (pointer.active) {
                     const dx = node.x - pointer.x;
@@ -192,6 +202,12 @@ export const GraphBackdrop = ({ className }: GraphBackdropProps) => {
             pointer.active = false;
         };
 
+        const onScroll = () => {
+            const y = window.scrollY;
+            impulse = Math.max(-1.6, Math.min(1.6, impulse + (y - lastScroll) / 90));
+            lastScroll = y;
+        };
+
         const intersection = new IntersectionObserver(
             ([entry]) => {
                 visible = entry.isIntersecting;
@@ -218,6 +234,7 @@ export const GraphBackdrop = ({ className }: GraphBackdropProps) => {
         window.addEventListener('pointermove', onPointerMove, { passive: true });
         window.addEventListener('pointerleave', onPointerLeave);
         window.addEventListener('blur', onPointerLeave);
+        window.addEventListener('scroll', onScroll, { passive: true });
 
         return () => {
             pause();
@@ -227,6 +244,7 @@ export const GraphBackdrop = ({ className }: GraphBackdropProps) => {
             window.removeEventListener('pointermove', onPointerMove);
             window.removeEventListener('pointerleave', onPointerLeave);
             window.removeEventListener('blur', onPointerLeave);
+            window.removeEventListener('scroll', onScroll);
         };
     }, []);
 

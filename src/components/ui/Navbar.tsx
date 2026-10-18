@@ -16,6 +16,7 @@ export const Navbar = () => {
         () => typeof window !== 'undefined' && window.scrollY > 24
     );
     const [hidden, setHidden] = useState(false);
+    const [active, setActive] = useState<string>('home');
 
     useEffect(() => {
         let lastY = typeof window !== 'undefined' ? window.scrollY : 0;
@@ -30,6 +31,26 @@ export const Navbar = () => {
 
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    // Track the section crossing the middle of the viewport, so the pill
+    // under the nav follows the reader.
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) setActive(entry.target.id);
+                });
+            },
+            { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+        );
+
+        SECTIONS.forEach((id) => {
+            const section = document.getElementById(id);
+            if (section) observer.observe(section);
+        });
+
+        return () => observer.disconnect();
     }, []);
 
     useEffect(() => {
@@ -61,54 +82,72 @@ export const Navbar = () => {
     return (
         <>
             <header
-                className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+                className={`fixed top-0 inset-x-0 z-50 transition-transform duration-300 ${
                     hidden && !open ? '-translate-y-full' : 'translate-y-0'
-                } ${
-                    scrolled
-                        ? 'bg-base/80 backdrop-blur-md border-b border-line'
-                        : 'bg-transparent border-b border-transparent'
                 }`}
             >
-                <div className="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between">
-                    <a href="#home" className="shrink-0" aria-label={t('nav.home')}>
-                        <Signature />
-                    </a>
+                <div className="mx-auto px-3 sm:px-4">
+                    {/* Notch: the bar tightens into a floating pill once you scroll */}
+                    <div
+                        className={`mx-auto flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                            scrolled
+                                ? 'mt-2.5 h-14 max-w-4xl rounded-2xl border border-line bg-base/75 px-3 shadow-[0_20px_50px_-32px_rgba(15,23,42,0.75)] backdrop-blur-xl'
+                                : 'mt-0 h-16 max-w-6xl rounded-2xl border border-transparent px-1 sm:px-2'
+                        }`}
+                    >
+                        <a href="#home" className="shrink-0" aria-label={t('nav.home')}>
+                            <Signature />
+                        </a>
 
-                    <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
-                        {SECTIONS.map((s) => (
-                            <a
-                                key={s}
-                                href={`#${s}`}
-                                className="px-3 py-2 rounded-lg text-sm text-muted hover:text-ink hover:bg-surface-2 transition-colors"
+                        <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
+                            {SECTIONS.map((s) => (
+                                <a
+                                    key={s}
+                                    href={`#${s}`}
+                                    aria-current={active === s ? 'true' : undefined}
+                                    className={`relative rounded-lg px-3 py-2 text-sm transition-colors ${
+                                        active === s
+                                            ? 'text-ink'
+                                            : 'text-muted hover:text-ink hover:bg-surface-2'
+                                    }`}
+                                >
+                                    {active === s && (
+                                        <motion.span
+                                            layoutId="nav-pill"
+                                            aria-hidden="true"
+                                            className="absolute inset-0 rounded-lg border border-line bg-surface-2"
+                                            transition={{ type: 'spring', stiffness: 380, damping: 34 }}
+                                        />
+                                    )}
+                                    <span className="relative">{labels[s]}</span>
+                                </a>
+                            ))}
+                        </nav>
+
+                        <div className="flex items-center gap-1.5">
+                            <button
+                                onClick={toggleLanguage}
+                                aria-label="Switch language"
+                                className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-mono text-muted hover:text-ink hover:bg-surface-2 transition-colors uppercase"
                             >
-                                {labels[s]}
-                            </a>
-                        ))}
-                    </nav>
-
-                    <div className="flex items-center gap-1.5">
-                        <button
-                            onClick={toggleLanguage}
-                            aria-label="Switch language"
-                            className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-mono text-muted hover:text-ink hover:bg-surface-2 transition-colors uppercase"
-                        >
-                            <Globe className="w-4 h-4" />
-                            {language === 'es' ? 'EN' : 'ES'}
-                        </button>
-                        <button
-                            onClick={toggleTheme}
-                            aria-label="Toggle theme"
-                            className="p-2 rounded-lg text-muted hover:text-ink hover:bg-surface-2 transition-colors"
-                        >
-                            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-                        </button>
-                        <button
-                            onClick={() => setOpen(true)}
-                            aria-label={t('nav.menu')}
-                            className="md:hidden p-2 rounded-lg text-muted hover:text-ink hover:bg-surface-2 transition-colors"
-                        >
-                            <Menu className="w-5 h-5" />
-                        </button>
+                                <Globe className="w-4 h-4" />
+                                {language === 'es' ? 'EN' : 'ES'}
+                            </button>
+                            <button
+                                onClick={toggleTheme}
+                                aria-label="Toggle theme"
+                                className="p-2 rounded-lg text-muted hover:text-ink hover:bg-surface-2 transition-colors"
+                            >
+                                {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                            </button>
+                            <button
+                                onClick={() => setOpen(true)}
+                                aria-label={t('nav.menu')}
+                                className="md:hidden p-2 rounded-lg text-muted hover:text-ink hover:bg-surface-2 transition-colors"
+                            >
+                                <Menu className="w-5 h-5" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -153,7 +192,12 @@ export const Navbar = () => {
                                         initial={{ opacity: 0, x: 24 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: 0.05 * i }}
-                                        className="px-3 py-3 rounded-lg text-base text-muted hover:text-ink hover:bg-surface-2 transition-colors"
+                                        aria-current={active === s ? 'true' : undefined}
+                                        className={`px-3 py-3 rounded-lg text-base transition-colors ${
+                                            active === s
+                                                ? 'bg-surface-2 text-ink'
+                                                : 'text-muted hover:text-ink hover:bg-surface-2'
+                                        }`}
                                     >
                                         {labels[s]}
                                     </motion.a>
