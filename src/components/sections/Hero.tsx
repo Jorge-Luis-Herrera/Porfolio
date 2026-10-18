@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Github, Linkedin, Send, MessageCircle, Mail } from 'lucide-react';
+import { ArrowDown, Download, Github, Linkedin, Send, MessageCircle, Mail, Building2, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import profileImg from '../../assets/profile.jpg';
+
+const COMPANY_URL = 'https://cubit-tech.com';
 
 export const Hero = () => {
     const { t, language } = useLanguage();
@@ -36,9 +38,21 @@ export const Hero = () => {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="text-center md:text-left"
                     >
-                        <p className="inline-block font-mono text-xs sm:text-sm text-accent mb-4 px-3 py-1 rounded-full border border-accent/30 bg-accent/5">
-                            {t('hero.badge')}
-                        </p>
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-4">
+                            <p className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm text-accent px-3 py-1 rounded-full border border-accent/30 bg-accent/5">
+                                {t('hero.badge')}
+                            </p>
+                            <a
+                                href={COMPANY_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm text-muted px-3 py-1 rounded-full border border-line bg-surface hover:text-accent hover:border-accent/40 transition-colors"
+                            >
+                                <Building2 className="w-3.5 h-3.5" />
+                                {t('hero.company')}
+                                <ExternalLink className="w-3 h-3" />
+                            </a>
+                        </div>
                         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-ink leading-tight">
                             {t('hero.title.pre')}{' '}
                             <span className="text-accent">{t('hero.title.highlight')}</span>

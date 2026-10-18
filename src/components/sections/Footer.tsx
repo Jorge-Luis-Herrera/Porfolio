@@ -9,6 +9,7 @@ import {
     FileText,
     ScrollText,
     Sparkles,
+    Building2,
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { Signature } from '../ui/Signature';
@@ -28,6 +29,12 @@ export const Footer = () => {
     ];
 
     const contact = [
+        {
+            label: 'Cubit Technologies · cubit-tech.com',
+            href: 'https://cubit-tech.com',
+            icon: Building2,
+            external: true,
+        },
         {
             label: 'herreraceciliajorgeluis@gmail.com',
             href: 'mailto:herreraceciliajorgeluis@gmail.com',

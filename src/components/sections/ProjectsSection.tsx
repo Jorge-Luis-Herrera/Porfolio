@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, Star } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
-import { projects, categoryOrder, type ProjectCategory } from '../../data/projects';
+import { otherProjects, categoryOrder, type ProjectCategory } from '../../data/projects';
 
 type Filter = 'all' | ProjectCategory;
 
@@ -19,21 +19,21 @@ export const ProjectsSection = () => {
     );
 
     const visible = useMemo(
-        () => (filter === 'all' ? projects : projects.filter((p) => p.category === filter)),
+        () => (filter === 'all' ? otherProjects : otherProjects.filter((p) => p.category === filter)),
         [filter]
     );
 
     return (
-        <section id="projects" className="scroll-mt-20 py-20 sm:py-28 border-t border-line">
+        <section className="py-20 sm:py-28 border-t border-line">
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
                 <header className="mb-10">
-                    <h2 className="section-title">{t('projects.title')}</h2>
-                    <p className="mt-2 text-muted text-sm sm:text-base">{t('projects.subtitle')}</p>
+                    <h2 className="section-title">{t('projects.more.title')}</h2>
+                    <p className="mt-2 text-muted text-sm sm:text-base">{t('projects.more.subtitle')}</p>
                 </header>
 
                 <div
                     role="tablist"
-                    aria-label={t('projects.title')}
+                    aria-label={t('projects.more.title')}
                     className="flex gap-2 overflow-x-auto pb-2 mb-8 -mx-1 px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                 >
                     {filters.map((f) => (

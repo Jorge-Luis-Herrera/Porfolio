@@ -8,25 +8,59 @@ export interface Project {
     tech: string[];
     repo: string;
     liveLink?: string;
+    /** Highlighted in the "Main projects" block at the top of the section. */
+    main?: boolean;
     starred?: boolean;
 }
 
 const GH = 'https://github.com/Jorge-Luis-Herrera';
 
 export const projects: Project[] = [
-    // ⭐ DESTACADOS / FULL-STACK
+    // ⭐ PROYECTOS PRINCIPALES (en producción)
+    {
+        id: 'pizzas-los-herrera',
+        category: 'featured',
+        title: 'Pizzería Los Herrera',
+        description: {
+            es: 'Sistema de ventas para pizzería en producción: menú con carrito persistente, pedidos con ubicación GPS, panel de administración protegido por token y generación automática del mensaje de WhatsApp para el local.',
+            en: 'Production sales system for a pizzeria: menu with persistent cart, orders with GPS location, token-protected admin panel, and automatic WhatsApp message generation for the store.',
+        },
+        tech: ['Rust', 'Axum', 'SeaORM', 'SQLite', 'Docker', 'Azure'],
+        repo: `${GH}/Pizzas-Los-Herrera`,
+        liveLink: 'https://pizzas-los-herrera-web.azurewebsites.net/',
+        main: true,
+        starred: true,
+    },
     {
         id: 'cloth-sell',
         category: 'featured',
-        title: 'Cloth-Sell',
+        title: 'Cloth-Sell — Jenny Clothing',
         description: {
-            es: 'Tienda de ropa en línea con catálogo dinámico y experiencia de compra orientada a conversión.',
-            en: 'Online clothing store with a dynamic catalog and conversion-focused shopping experience.',
+            es: 'E-commerce de ropa desplegado en producción: catálogo público, variantes de talla y color, control de stock transaccional, compra sin registro y panel administrativo protegido.',
+            en: 'Clothing e-commerce deployed to production: public catalog, size and color variants, transactional stock control, guest checkout, and a protected admin panel.',
         },
-        tech: ['React', 'TypeScript', 'Tailwind CSS'],
+        tech: ['Rust', 'Axum', 'SQLx', 'SQLite', 'React', 'TypeScript', 'Azure'],
         repo: `${GH}/Cloth-Sell`,
+        liveLink: 'https://jenny-clothing-20261014.azurewebsites.net/',
+        main: true,
         starred: true,
     },
+    {
+        id: 'cutesell',
+        category: 'featured',
+        title: 'CuteSell Plush Store',
+        description: {
+            es: 'Tienda online de peluches en producción: catálogo inmersivo, búsqueda global, panel de administración y flujo de venta por WhatsApp.',
+            en: 'Production plush store: immersive catalog, global search, admin dashboard, and WhatsApp sales flow.',
+        },
+        tech: ['Next.js', 'NestJS', 'TypeScript', 'Tailwind CSS', 'Azure'],
+        repo: `${GH}/CuteSell`,
+        liveLink: 'https://cutesell-abe0e5d5cwdwf7a6.eastus-01.azurewebsites.net/',
+        main: true,
+        starred: true,
+    },
+
+    // FULL-STACK
     {
         id: 'enchanted-vanity',
         category: 'featured',
@@ -37,20 +71,6 @@ export const projects: Project[] = [
         },
         tech: ['React', 'NestJS', 'SQLite', 'Azure'],
         repo: `${GH}/enchanted-vanity`,
-        starred: true,
-    },
-    {
-        id: 'cutesell',
-        category: 'featured',
-        title: 'CuteSell Plush Store',
-        description: {
-            es: 'Tienda online de peluches con catálogo inmersivo, búsqueda global y panel de administración.',
-            en: 'Online plush store with immersive catalog, global search, and admin dashboard.',
-        },
-        tech: ['Next.js', 'NestJS', 'TypeScript', 'Tailwind CSS'],
-        repo: `${GH}/CuteSell`,
-        liveLink: 'https://cutesell-abe0e5d5cwdwf7a6.eastus-01.azurewebsites.net/',
-        starred: true,
     },
     {
         id: 'dpavel',
@@ -63,7 +83,6 @@ export const projects: Project[] = [
         tech: ['Vue', 'Node.js', 'PostgreSQL', 'Azure'],
         repo: `${GH}/DPavel`,
         liveLink: 'https://dpavel-gzdgamcvhzgja8h0.eastus-01.azurewebsites.net/',
-        starred: true,
     },
     {
         id: 'g-e',
@@ -132,17 +151,6 @@ export const projects: Project[] = [
         },
         tech: ['C#', '.NET', 'YoutubeExplode'],
         repo: `${GH}/YT-Video-Downloader`,
-    },
-    {
-        id: 'pizzas-los-herrera',
-        category: 'backend',
-        title: 'Pizzas Los Herrera',
-        description: {
-            es: 'Sistema para pizzería construido en Rust como ejercicio de sistemas y rendimiento.',
-            en: 'Pizzeria system built in Rust as a systems and performance exercise.',
-        },
-        tech: ['Rust'],
-        repo: `${GH}/Pizzas-Los-Herrera`,
     },
 
     // 🤖 IA & AUTOMATIZACIÓN
@@ -271,5 +279,9 @@ export const projects: Project[] = [
         repo: `${GH}/Python_Documentation`,
     },
 ];
+
+export const mainProjects = projects.filter((p) => p.main);
+
+export const otherProjects = projects.filter((p) => !p.main);
 
 export const categoryOrder: ProjectCategory[] = ['featured', 'backend', 'automation', 'academic'];
