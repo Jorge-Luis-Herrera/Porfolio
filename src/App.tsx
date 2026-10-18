@@ -3,7 +3,7 @@ import { Hero } from './components/sections/Hero'
 import { ProjectsSection } from './components/sections/ProjectsSection'
 import { SkillsSection } from './components/sections/SkillsSection'
 import { AboutSection } from './components/sections/AboutSection'
-import { ContactSection } from './components/sections/ContactSection'
+import { Footer } from './components/sections/Footer'
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <SkillsSection />
         <AboutSection />
       </main>
-      <ContactSection />
+      <Footer />
     </div>
   )
 }

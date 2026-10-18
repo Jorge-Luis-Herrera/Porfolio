@@ -143,7 +143,7 @@ export const Navbar = () => {
                                     <Github className="w-5 h-5" />
                                 </a>
                                 <a
-                                    href="https://linkedin.com/in/jorge-luis-herrera-cecilia-6a9031377/"
+                                    href="https://www.linkedin.com/in/jorge-luis-herrera-cecilia-6a9031377/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="LinkedIn"

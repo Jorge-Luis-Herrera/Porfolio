@@ -65,7 +65,7 @@ export const Hero = () => {
                             <div className="flex items-center gap-1 sm:ml-2">
                                 {[
                                     { href: 'https://github.com/Jorge-Luis-Herrera', icon: Github, label: 'GitHub' },
-                                    { href: 'https://linkedin.com/in/jorge-luis-herrera-cecilia-6a9031377/', icon: Linkedin, label: 'LinkedIn' },
+                                    { href: 'https://www.linkedin.com/in/jorge-luis-herrera-cecilia-6a9031377/', icon: Linkedin, label: 'LinkedIn' },
                                     { href: 'https://t.me/Jorge_Lhc', icon: Send, label: 'Telegram' },
                                     { href: 'https://wa.me/5350722776', icon: MessageCircle, label: 'WhatsApp' },
                                     { href: 'mailto:herreraceciliajorgeluis@gmail.com', icon: Mail, label: 'Email' },
