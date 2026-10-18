@@ -29,7 +29,37 @@ export const SmoothScroll = () => {
         };
         frame = requestAnimationFrame(raf);
 
+        /*
+         * In-page links glide with Lenis instead of jumping. This also keeps
+         * "#projects" out of the address bar, so reloading always lands on the
+         * hero instead of half way down the page.
+         * The default is only prevented once the target has been resolved, so a
+         * broken selector can never leave a dead link behind.
+         */
+        const onAnchorClick = (event: MouseEvent) => {
+            if (event.defaultPrevented || event.button !== 0) return;
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+            const link = (event.target as Element | null)?.closest?.('a[href^="#"]');
+            const hash = link?.getAttribute('href');
+            if (!hash || hash === '#') return;
+
+            let target: Element | null = null;
+            try {
+                target = document.querySelector(hash);
+            } catch {
+                return;
+            }
+            if (!(target instanceof HTMLElement)) return;
+
+            event.preventDefault();
+            lenis.scrollTo(target, { offset: -80 });
+        };
+
+        document.addEventListener('click', onAnchorClick, { capture: true });
+
         return () => {
+            document.removeEventListener('click', onAnchorClick, { capture: true });
             cancelAnimationFrame(frame);
             registerLenis(null);
             lenis.destroy();
