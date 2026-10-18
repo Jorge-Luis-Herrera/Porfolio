@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Code2, Layout, Server, Wrench } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import { BlurText } from '../ui/BlurText';
+import { ScrambleText } from '../ui/ScrambleText';
 
 export const SkillsSection = () => {
     const { t } = useLanguage();
@@ -32,7 +34,7 @@ export const SkillsSection = () => {
         <section id="skills" className="scroll-mt-20 py-20 sm:py-28 border-t border-line">
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
                 <header className="mb-10">
-                    <h2 className="section-title">{t('skills.title')}</h2>
+                    <BlurText as="h2" className="section-title" text={t('skills.title')} />
                     <p className="mt-2 text-muted text-sm sm:text-base">{t('skills.subtitle')}</p>
                 </header>
 
@@ -48,7 +50,7 @@ export const SkillsSection = () => {
                         >
                             <div className="flex items-center gap-2.5 mb-4 text-accent">
                                 <g.icon className="w-4 h-4" />
-                                <h3 className="font-display text-sm font-medium text-ink">{g.title}</h3>
+                                <ScrambleText as="h3" className="font-display text-sm font-medium text-ink" text={g.title} />
                             </div>
                             <ul className="flex flex-wrap gap-1.5">
                                 {g.items.map((item) => (

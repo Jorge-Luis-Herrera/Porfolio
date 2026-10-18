@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Github, Wifi, Star } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import { getLenis } from '../../lib/lenis';
 import type { Project } from '../../data/projects';
 import { LetterReveal } from './LetterReveal';
 
@@ -23,14 +24,17 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
             if (event.key === 'Escape') onClose();
         };
         const previousOverflow = document.body.style.overflow;
+        const lenis = getLenis();
 
         document.addEventListener('keydown', onKeyDown);
         // Lock background scroll while the dialog is open
         document.body.style.overflow = 'hidden';
+        lenis?.stop();
 
         return () => {
             document.removeEventListener('keydown', onKeyDown);
             document.body.style.overflow = previousOverflow;
+            lenis?.start();
         };
     }, [project, onClose]);
 
@@ -67,10 +71,10 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                     />
 
                     <motion.div
-                        initial={{ opacity: 0, y: 48, scale: 0.97 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 32, scale: 0.98 }}
-                        transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                        initial={{ opacity: 0, y: 64, scale: 0.94, filter: 'blur(10px)' }}
+                        animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+                        exit={{ opacity: 0, y: 40, scale: 0.97, filter: 'blur(6px)' }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                         className="relative w-full sm:max-w-3xl max-h-[92svh] sm:max-h-[86svh] flex flex-col overflow-hidden rounded-t-2xl sm:rounded-2xl border border-line bg-surface shadow-2xl"
                     >
                         <div className="h-1.5 shrink-0 bg-gradient-to-r from-accent via-accent/70 to-accent/10" aria-hidden="true" />
@@ -84,7 +88,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                             <X className="w-4 h-4" />
                         </button>
 
-                        <div className="modal-scroll overflow-y-auto px-5 sm:px-8 py-6 sm:py-8">
+                        <div className="modal-scroll overflow-y-auto px-5 sm:px-8 py-6 sm:py-8" data-lenis-prevent>
                             <div className="flex flex-wrap items-center gap-2 pr-12">
                                 <span className="chip">{t(`modal.scope.${project.category}`)}</span>
                                 {project.liveLink && (

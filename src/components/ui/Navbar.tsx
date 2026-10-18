@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon, Globe, Github, Linkedin, Mail } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTheme } from '../../context/ThemeContext';
+import { getLenis } from '../../lib/lenis';
 import { Signature } from './Signature';
 
 const SECTIONS = ['home', 'projects', 'skills', 'about', 'contact'] as const;
@@ -11,18 +12,41 @@ export const Navbar = () => {
     const { t, language, toggleLanguage } = useLanguage();
     const { theme, toggleTheme } = useTheme();
     const [open, setOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
+    const [scrolled, setScrolled] = useState(
+        () => typeof window !== 'undefined' && window.scrollY > 24
+    );
+    const [hidden, setHidden] = useState(false);
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 24);
-        onScroll();
+        let lastY = typeof window !== 'undefined' ? window.scrollY : 0;
+
+        const onScroll = () => {
+            const y = window.scrollY;
+            setScrolled(y > 24);
+            // Hide going down, reveal going up (never when near the top).
+            setHidden(y > lastY && y > 220);
+            lastY = y;
+        };
+
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
     useEffect(() => {
-        document.body.style.overflow = open ? 'hidden' : '';
-        return () => { document.body.style.overflow = ''; };
+        const lenis = getLenis();
+
+        if (open) {
+            lenis?.stop();
+            document.body.style.overflow = 'hidden';
+        } else {
+            lenis?.start();
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            lenis?.start();
+            document.body.style.overflow = '';
+        };
     }, [open]);
 
     const labels: Record<string, string> = {
@@ -37,6 +61,8 @@ export const Navbar = () => {
         <>
             <header
                 className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+                    hidden && !open ? '-translate-y-full' : 'translate-y-0'
+                } ${
                     scrolled
                         ? 'bg-base/80 backdrop-blur-md border-b border-line'
                         : 'bg-transparent border-b border-transparent'
@@ -104,6 +130,7 @@ export const Navbar = () => {
                             transition={{ type: 'spring', damping: 28, stiffness: 300 }}
                             className="fixed right-0 top-0 z-50 h-full w-72 max-w-[85vw] bg-base border-l border-line p-6 flex flex-col md:hidden"
                             aria-label="Mobile navigation"
+                            data-lenis-prevent
                         >
                             <div className="flex items-center justify-between mb-10">
                                 <Signature />

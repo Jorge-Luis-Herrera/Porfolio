@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Trophy, Zap, Cpu, Binary, FileText, Layers } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import { BlurText } from '../ui/BlurText';
 import profileImg from '../../assets/profile.jpg';
 
 export const AboutSection = () => {
@@ -31,7 +32,7 @@ export const AboutSection = () => {
                     </motion.div>
 
                     <div>
-                        <h2 className="section-title mb-6">{t('about.title')}</h2>
+                        <BlurText as="h2" className="section-title mb-6" text={t('about.title')} />
                         <div className="space-y-4 text-muted leading-relaxed max-w-2xl">
                             <p>{t('about.p1')}</p>
                             <p>{t('about.p2')}</p>

@@ -200,6 +200,49 @@
   border-radius: 9999px;
 }
 
+/* ------------------------------------------------------------------ *
+ *  Custom cursor (desktop, fine pointers only)
+ * ------------------------------------------------------------------ */
+html.has-custom-cursor,
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor [role='button'] {
+  cursor: none;
+}
+
+html.has-custom-cursor input,
+html.has-custom-cursor textarea,
+html.has-custom-cursor select {
+  cursor: auto;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Cursor-following glow inside cards
+ * ------------------------------------------------------------------ */
+.glow-follow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    340px circle at var(--gx, 50%) var(--gy, 50%),
+    color-mix(in srgb, var(--accent) 18%, transparent),
+    transparent 68%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glow-follow:hover::before {
+  opacity: 1;
+}
+
+/* Raised state while a card is being tilted */
+.glow-follow[data-tilted='true'] {
+  box-shadow: 0 22px 60px -28px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
 /* Accessibility: honour reduced-motion preferences everywhere */
 @media (prefers-reduced-motion: reduce) {
   html {

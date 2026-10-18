@@ -11,6 +11,8 @@ import {
 import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { CUBITECH, LINKEDIN, UNIVERSITY } from '../../data/tech';
+import { BlurText } from '../ui/BlurText';
+import { ScrambleText } from '../ui/ScrambleText';
 
 interface TimelineItem {
     icon: LucideIcon;
@@ -105,7 +107,7 @@ export const Experience = () => {
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
                 <header className="mb-12 flex flex-wrap items-end justify-between gap-4">
                     <div>
-                        <h2 className="section-title">{t('experience.title')}</h2>
+                        <BlurText as="h2" className="section-title" text={t('experience.title')} />
                         <p className="mt-2 text-muted text-sm sm:text-base">{t('experience.subtitle')}</p>
                     </div>
                     <a
@@ -123,9 +125,11 @@ export const Experience = () => {
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-14">
                     {groups.map((group, groupIndex) => (
                         <div key={group.key}>
-                            <h3 className="mb-6 font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
-                                {group.label}
-                            </h3>
+                            <ScrambleText
+                                as="h3"
+                                className="mb-6 font-mono text-[11px] uppercase tracking-[0.2em] text-accent"
+                                text={group.label}
+                            />
 
                             <ol className="relative border-l border-line ml-3 sm:ml-4">
                                 {group.items.map((item, i) => (

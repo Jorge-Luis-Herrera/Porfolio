@@ -4,6 +4,8 @@ import { Github, ExternalLink, Star, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useProjectModal } from '../../context/ProjectModalContext';
 import { otherProjects, categoryOrder, type ProjectCategory } from '../../data/projects';
+import { BlurText } from '../ui/BlurText';
+import { TiltCard } from '../ui/TiltCard';
 
 type Filter = 'all' | ProjectCategory;
 
@@ -29,7 +31,7 @@ export const ProjectsSection = () => {
         <section className="py-20 sm:py-28 border-t border-line">
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
                 <header className="mb-10">
-                    <h2 className="section-title">{t('projects.more.title')}</h2>
+                    <BlurText as="h2" className="section-title" text={t('projects.more.title')} />
                     <p className="mt-2 text-muted text-sm sm:text-base">{t('projects.more.subtitle')}</p>
                 </header>
 
@@ -65,18 +67,21 @@ export const ProjectsSection = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.97 }}
                                 transition={{ duration: 0.3 }}
-                                role="button"
-                                tabIndex={0}
-                                aria-label={`${p.title} — ${t('projects.viewDetails')}`}
-                                onClick={() => openProject(p)}
-                                onKeyDown={(event) => {
-                                    if (event.key === 'Enter' || event.key === ' ') {
-                                        event.preventDefault();
-                                        openProject(p);
-                                    }
-                                }}
-                                className="card border-animated group p-5 sm:p-6 flex flex-col cursor-pointer"
+                                className="h-full"
                             >
+                                <TiltCard
+                                    role="button"
+                                    tabIndex={0}
+                                    aria-label={`${p.title} — ${t('projects.viewDetails')}`}
+                                    onClick={() => openProject(p)}
+                                    onKeyDown={(event) => {
+                                        if (event.key === 'Enter' || event.key === ' ') {
+                                            event.preventDefault();
+                                            openProject(p);
+                                        }
+                                    }}
+                                    className="card border-animated group p-5 sm:p-6 flex flex-col cursor-pointer h-full"
+                                >
                                 <div className="flex items-start justify-between gap-3">
                                     <h3 className="font-display font-medium text-lg text-ink">
                                         {p.title}
@@ -130,6 +135,7 @@ export const ProjectsSection = () => {
                                         <ArrowRight className="w-3.5 h-3.5" />
                                     </span>
                                 </div>
+                                </TiltCard>
                             </motion.li>
                         ))}
                     </AnimatePresence>
