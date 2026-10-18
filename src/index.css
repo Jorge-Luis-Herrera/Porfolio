@@ -185,6 +185,18 @@
   animation: letter-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+/*
+ * When a letter lands, drop the animation and its leftover filter/transform.
+ * Keeping them paints every letter in its own composited layer, which makes
+ * the text look heavier or muddier on desktop while mobile stays fine.
+ */
+.letter-done {
+  animation: none;
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+
 /* Custom scrollbar for the modal */
 .modal-scroll {
   scrollbar-width: thin;

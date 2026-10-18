@@ -73,15 +73,8 @@ const translations = {
         'skills.tools': 'Herramientas & DevOps',
 
         'about.title': 'Sobre mí',
-        'about.p1': 'Soy desarrollador full-stack freelance y CTO en CubiTech. Antes de escribir la primera línea me gusta entender el problema: medir, iterar y buscar la solución simple que aguanta el paso del tiempo.',
-        'about.p2': 'Trabajo por entregas pequeñas y verificables, con la lógica aprendida en MatCom aplicada a la ingeniería: hipótesis, prueba, resultado.',
-        'about.soft.title': 'Competencias',
-        'about.soft.leadership': 'Liderazgo técnico y coordinación de equipo',
-        'about.soft.speed': 'Entrega ágil y aprendizaje continuo',
-        'about.soft.creativity': 'Creatividad aplicada al producto',
-        'about.soft.understanding': 'Comprensión profunda del problema',
-        'about.soft.docs': 'Documentación rigurosa',
-        'about.soft.predictions': 'Análisis y proyección técnica',
+        'about.p1': 'Soy desarrollador full-stack freelance y CTO en CubiTech.',
+        'about.p2': 'Vengo de MatCom y trabajo como se trabaja la matemática: entender bien el problema antes de escribir la primera línea y buscar la solución más simple.',
 
         'contact.title': '¿Trabajamos juntos?',
         'contact.description': 'Escríbeme por el canal que prefieras y te respondo con una propuesta concreta: alcance, tiempos y siguiente paso.',
@@ -96,7 +89,7 @@ const translations = {
         'footer.link.cover': 'Carta de presentación',
         'footer.link.repos': 'Todos los repositorios',
         'footer.link.top': 'Volver arriba',
-        'footer.madeBy': 'Hecho por Jorge',
+        'footer.author': 'Autor:',
 
         'stats.projects': 'Proyectos en GitHub',
         'stats.production': 'Apps en producción',
@@ -215,15 +208,8 @@ const translations = {
         'skills.tools': 'Tools & DevOps',
 
         'about.title': 'About me',
-        'about.p1': "I'm a freelance full-stack developer and CTO at CubiTech. Before writing the first line I like to understand the problem: measure, iterate, and look for the simple solution that stands the test of time.",
-        'about.p2': 'I ship in small, verifiable steps, applying the logic I learned at MatCom to engineering: hypothesis, test, result.',
-        'about.soft.title': 'Competencies',
-        'about.soft.leadership': 'Technical leadership and team coordination',
-        'about.soft.speed': 'Agile delivery and continuous learning',
-        'about.soft.creativity': 'Product-driven creativity',
-        'about.soft.understanding': 'Deep understanding of the problem',
-        'about.soft.docs': 'Rigorous documentation',
-        'about.soft.predictions': 'Technical analysis and forecasting',
+        'about.p1': "I'm a freelance full-stack developer and CTO at CubiTech.",
+        'about.p2': 'I come from MatCom and I work the way mathematics is done: understand the problem properly before writing the first line, and look for the simplest solution.',
 
         'contact.title': "Let's work together",
         'contact.description': 'Reach out through your favorite channel and I will answer with a concrete proposal: scope, timing, and next step.',
@@ -238,7 +224,7 @@ const translations = {
         'footer.link.cover': 'Cover letter',
         'footer.link.repos': 'All repositories',
         'footer.link.top': 'Back to top',
-        'footer.madeBy': 'Made by Jorge',
+        'footer.author': 'Author:',
 
         'stats.projects': 'Projects on GitHub',
         'stats.production': 'Apps in production',

@@ -1,4 +1,5 @@
 import { useReducedMotion } from 'framer-motion';
+import type { AnimationEvent } from 'react';
 
 interface LetterRevealProps {
     text: string;
@@ -23,8 +24,14 @@ export const LetterReveal = ({ text, delay = 0, stagger = 12, className }: Lette
     const words = text.split(' ');
     let index = 0;
 
+    // Clear the animation as soon as each letter lands: leftover filter and
+    // transform values make desktop renderers paint the text heavy or muddy.
+    const handleAnimationEnd = (event: AnimationEvent<HTMLSpanElement>) => {
+        (event.target as HTMLElement).classList.add('letter-done');
+    };
+
     return (
-        <span className={className}>
+        <span className={className} onAnimationEnd={handleAnimationEnd}>
             <span className="sr-only">{text}</span>
             <span aria-hidden="true">
                 {words.map((word, wordIndex) => (

@@ -185,8 +185,13 @@ export const Footer = () => {
 
                 {/* Bottom bar */}
                 <div className="py-6 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p className="font-signature text-3xl leading-none text-ink sm:text-[2.1rem]">
-                        {t('footer.madeBy')}
+                    <p className="flex items-baseline gap-2.5">
+                        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+                            {t('footer.author')}
+                        </span>
+                        <span className="font-signature text-3xl leading-none text-ink sm:text-[2.1rem]">
+                            Jorge Luis Herrera
+                        </span>
                     </p>
                     <a
                         href="#home"
