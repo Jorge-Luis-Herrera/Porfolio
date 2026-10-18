@@ -49,6 +49,7 @@ export const projects: Project[] = [
         },
         tech: ['Next.js', 'NestJS', 'TypeScript', 'Tailwind CSS'],
         repo: `${GH}/CuteSell`,
+        liveLink: 'https://cutesell-abe0e5d5cwdwf7a6.eastus-01.azurewebsites.net/',
         starred: true,
     },
     {
@@ -61,7 +62,7 @@ export const projects: Project[] = [
         },
         tech: ['Vue', 'Node.js', 'PostgreSQL', 'Azure'],
         repo: `${GH}/DPavel`,
-        liveLink: 'http://dpavel-gzdgamcvhzgja8h0.eastus-01.azurewebsites.net/',
+        liveLink: 'https://dpavel-gzdgamcvhzgja8h0.eastus-01.azurewebsites.net/',
         starred: true,
     },
     {
