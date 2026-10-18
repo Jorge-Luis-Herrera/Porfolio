@@ -18,6 +18,7 @@ const translations = {
         'nav.contact': 'Contacto',
         'nav.menu': 'Menú',
         'nav.close': 'Cerrar',
+        'nav.top': 'Volver arriba',
 
         'hero.badge': 'Desarrollador Full-Stack Freelance',
         'hero.company': 'CTO en CubiTech',
@@ -156,6 +157,7 @@ const translations = {
         'nav.contact': 'Contact',
         'nav.menu': 'Menu',
         'nav.close': 'Close',
+        'nav.top': 'Back to top',
 
         'hero.badge': 'Freelance Full-Stack Developer',
         'hero.company': 'CTO at CubiTech',

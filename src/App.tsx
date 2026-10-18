@@ -2,6 +2,7 @@ import { Navbar } from './components/ui/Navbar'
 import { ScrollProgress } from './components/ui/ScrollProgress'
 import { Spotlight } from './components/ui/Spotlight'
 import { CustomCursor } from './components/ui/CustomCursor'
+import { BackToTop } from './components/ui/BackToTop'
 import { Preloader } from './components/ui/Preloader'
 import { SmoothScroll } from './components/ui/SmoothScroll'
 import { SkewOnScroll } from './components/ui/SkewOnScroll'
@@ -23,6 +24,7 @@ function App() {
       <Preloader />
       <CustomCursor />
       <ScrollProgress />
+      <BackToTop />
 
       <div className="relative min-h-screen bg-base text-ink">
         <div className="grid-bg pointer-events-none fixed inset-0 z-0" aria-hidden="true" />
