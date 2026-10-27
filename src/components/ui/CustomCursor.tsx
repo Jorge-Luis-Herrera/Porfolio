@@ -31,16 +31,27 @@ export const CustomCursor = () => {
         const root = document.documentElement;
         root.classList.add('has-custom-cursor');
 
+        // setState with the *same* value bails out of a re-render, and React
+        // compares with Object.is on every pointermove — cheap but avoids
+        // re-rendering the subtree for every pixel of mouse travel.
         const onPointerMove = (event: PointerEvent) => {
             x.set(event.clientX);
             y.set(event.clientY);
             setVisible(true);
 
+            // Pass the *same* value to skip React's re-render: setState bails
+            // out when the next value is Object.is-equal to the current one.
+            // Without this the component re-renders on every pixel of mouse
+            // travel, which cost a surprising amount of frame time.
             const target = event.target as Element | null;
-            setHovering(Boolean(target?.closest(INTERACTIVE)));
+            setHovering((prev) => {
+                const next = Boolean(target?.closest(INTERACTIVE));
+                return Object.is(prev, next) ? prev : next;
+            });
 
             const labelled = target?.closest(LABELLED) as HTMLElement | null;
-            setLabel(labelled?.dataset.cursor?.trim() || null);
+            const nextLabel = labelled?.dataset.cursor?.trim() || null;
+            setLabel((prev) => (Object.is(prev, nextLabel) ? prev : nextLabel));
         };
 
         const onPointerLeave = () => setVisible(false);

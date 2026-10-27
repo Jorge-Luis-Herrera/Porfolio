@@ -18,9 +18,15 @@ export const SkewOnScroll = ({ children }: { children: ReactNode }) => {
     const { scrollY } = useScroll();
     const velocity = useVelocity(scrollY);
     const smoothVelocity = useSpring(velocity, { damping: 50, stiffness: 380 });
-    const skewTarget = useTransform(smoothVelocity, [-2400, 0, 2400], [-1.1, 0, 1.1], {
-        clamp: true,
-    });
+    /* Dead zone below ±700 px/s, so slow scrolling stays perfectly square and
+       only fast flings get a (small) skew. Skewing <main> re-rasterises the
+       page while scrolling, so keeping it rare and tiny protects frame time. */
+    const skewTarget = useTransform(
+        smoothVelocity,
+        [-2600, -700, 700, 2600],
+        [-0.7, 0, 0, 0.7],
+        { clamp: true }
+    );
     const skewY = useSpring(skewTarget, { damping: 40, stiffness: 320 });
 
     if (reduceMotion) return <main>{children}</main>;

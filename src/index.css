@@ -36,10 +36,9 @@
     --line: rgba(255, 255, 255, 0.08);
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
+  /* NOTE: no `scroll-behavior: smooth` here — Lenis drives the scroll one
+     frame at a time, and native smooth scrolling fights it (double-easing,
+     stutter). Anchors intercept clicks themselves in SmoothScroll. */
   body {
     @apply bg-base text-ink font-sans antialiased transition-colors duration-300;
   }
